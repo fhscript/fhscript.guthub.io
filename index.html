@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#060A1C">
+<title>AB Oil and Gas | Abasieyene Ini Investment Limited</title>
+<meta name="description" content="Petrol, POS and device charging in Etinan. Check your charge with your tag number.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --font:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --disp:"Sora","Inter",system-ui,sans-serif;
+  --bg:#060A1C; --bg2:#0C1333; --card:rgba(255,255,255,.06); --card2:rgba(255,255,255,.10);
+  --line:rgba(255,255,255,.12); --text:#EAF0FF; --mut:#93A0C8;
+  --blue:#4C6BFF; --blue2:#2B3FC4; --cyan:#37D6FF; --ok:#2BD98A; --warn:#FFB020; --bad:#FF5C6C;
+}
+[data-theme=light]{
+  --bg:#EEF2FF; --bg2:#FFFFFF; --card:#FFFFFF; --card2:#F2F4FF;
+  --line:rgba(20,30,90,.12); --text:#0E1433; --mut:#5A6590;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.5;font-size:15px;min-height:100vh;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-1;background:
+  radial-gradient(700px 420px at 85% -5%,rgba(76,107,255,.35),transparent 60%),
+  radial-gradient(500px 380px at -10% 30%,rgba(55,214,255,.14),transparent 60%),var(--bg)}
+[data-theme=light] .bg{background:radial-gradient(700px 420px at 85% -5%,rgba(76,107,255,.22),transparent 60%),var(--bg)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
+h1,h2,h3{font-family:var(--disp);line-height:1.12;letter-spacing:-.01em}
+h1{font-size:clamp(1.7rem,7vw,2.5rem);font-weight:800}
+h2{font-size:1.35rem;font-weight:700;margin:6px 0 10px}
+h3{font-size:1.02rem;font-weight:700;margin-bottom:6px}
+p.mut,.mut{color:var(--mut)}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+
+/* header */
+.top{position:sticky;top:0;z-index:30;backdrop-filter:blur(16px) saturate(150%);background:color-mix(in srgb,var(--bg) 72%,transparent);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:10px;padding-bottom:10px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{width:38px;height:38px;border-radius:11px;background:linear-gradient(150deg,var(--blue),var(--blue2));display:grid;place-items:center;font-family:var(--disp);font-weight:800;color:#fff;box-shadow:0 6px 16px rgba(76,107,255,.45);flex:none}
+.brand b{display:block;font-family:var(--disp);font-size:1rem}
+.brand small{display:block;color:var(--mut);font-size:.72rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-size:.78rem;font-weight:600;white-space:nowrap}
+.pill i{width:9px;height:9px;border-radius:50%;background:var(--bad)}
+.pill.open i{background:var(--ok);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(43,217,138,.6)}100%{box-shadow:0 0 0 9px rgba(43,217,138,0)}}
+
+main{padding-bottom:120px}
+.view{display:none;padding-top:16px}
+.view.on{display:block;animation:vin .25s ease-out}
+@keyframes vin{from{opacity:0;transform:translateY(8px)}}
+.stack>*+*{margin-top:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{border:0;border-radius:14px;padding:12px 16px;font-weight:600;background:linear-gradient(150deg,var(--blue),var(--blue2));color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 8px 18px rgba(76,107,255,.35)}
+.btn:active{transform:translateY(1px)}
+.btn.sm{padding:8px 12px;font-size:.82rem;border-radius:11px}
+.btn.alt{background:var(--card2);color:var(--text);box-shadow:none;border:1px solid var(--line)}
+.btn.amber{background:linear-gradient(150deg,#FFC24A,var(--warn));color:#2a1a00;box-shadow:0 8px 18px rgba(255,176,32,.3)}
+.btn.bad{background:linear-gradient(150deg,#ff7b88,var(--bad));box-shadow:none}
+input,select,textarea{width:100%;background:var(--card2);border:1px solid var(--line);border-radius:13px;padding:12px 14px;outline-offset:2px}
+input[type=range]{padding:0;accent-color:var(--blue);height:30px;background:none;border:0}
+label{display:block;font-size:.78rem;color:var(--mut);margin:10px 0 5px}
+textarea{min-height:90px;resize:vertical;font-size:.82rem}
+
+/* hero + 3D stage */
+.hero{position:relative;border-radius:26px;padding:20px 18px 14px;background:linear-gradient(160deg,rgba(76,107,255,.28),rgba(12,19,51,.2));border:1px solid var(--line);overflow:hidden}
+.hero p{color:var(--mut);margin-top:6px;max-width:34ch}
+.stage{position:relative;height:290px;perspective:1000px;touch-action:pan-y;cursor:grab;display:grid;place-items:center;user-select:none;-webkit-user-select:none}
+.stage:active{cursor:grabbing}
+.rig{position:relative;width:0;height:0;transform-style:preserve-3d;transform:rotateX(var(--rx,-14deg)) rotateY(var(--ry,-28deg))}
+.bx{position:absolute;left:0;top:0;transform-style:preserve-3d}
+.f{position:absolute;backface-visibility:hidden;overflow:hidden}
+.floor{position:absolute;bottom:22px;left:50%;width:240px;height:40px;margin-left:-120px;border-radius:50%;background:radial-gradient(closest-side,rgba(55,214,255,.4),transparent);filter:blur(5px)}
+.drag-hint{position:absolute;right:12px;top:10px;font-size:.7rem;color:var(--mut);background:var(--card);border:1px solid var(--line);padding:4px 9px;border-radius:99px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 6px;scrollbar-width:none}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--text);padding:8px 14px;border-radius:99px;font-size:.82rem;font-weight:600;white-space:nowrap}
+.chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.scr{width:100%;height:100%;display:grid;place-content:center;justify-items:center;gap:8px;color:#fff;font-family:var(--disp);text-align:center}
+.scr small{font-size:.62rem;color:#9db0ff;font-family:var(--font)}
+.scr b{font-size:2.3rem;font-weight:800;line-height:1}
+.scr sup{font-size:1rem}
+.scr .bt{width:68%;height:8px;border-radius:5px;background:rgba(255,255,255,.2);overflow:hidden}
+.scr .bt i{display:block;height:100%;background:var(--ok)}
+.cam{position:absolute;top:10px;left:10px;width:28px;height:28px;border-radius:10px;background:#0a0f33;box-shadow:inset 0 0 0 3px #2c3a9c}
+.kb{width:100%;height:100%;background:repeating-linear-gradient(90deg,rgba(255,255,255,.16) 0 14px,transparent 14px 18px),repeating-linear-gradient(0deg,transparent 0 16px,rgba(0,0,0,.35) 16px 20px)}
+.pb{width:100%;height:100%;display:grid;place-content:center;justify-items:center;gap:7px;color:#16214f;font-family:var(--disp);font-weight:800}
+.pb b{font-size:1.15rem}
+.pb span{display:flex;gap:4px}
+.pb span i{width:9px;height:9px;border-radius:50%;background:#16214f33}
+.pb span i.on{background:var(--ok);box-shadow:0 0 6px var(--ok)}
+.sol{width:100%;height:100%;background:linear-gradient(90deg,rgba(255,255,255,.35) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(rgba(255,255,255,.35) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(150deg,#2f52e6,#0a1a6e)}
+.pd{margin:14px 10px;padding:10px 6px;border-radius:9px;background:#080d2c;color:var(--cyan);text-align:center;font-family:var(--disp)}
+.pd span{display:block;font-size:.62rem;color:#7f91d6;font-family:var(--font)}
+.pd b{font-size:1.6rem}
+.pl{margin:8px auto;width:50%;height:6px;border-radius:4px;background:#6f84e8}
+
+/* finder + tag */
+.finder{display:flex;gap:10px}
+.finder input{font-size:1.1rem;font-weight:600}
+.tag{position:relative;background:linear-gradient(160deg,#1a1fc0,#0b0d6e);border-radius:14px;padding:20px;box-shadow:0 18px 34px rgba(5,6,70,.5),inset 0 0 0 1px rgba(255,255,255,.14);animation:drop .35s ease-out;color:#EFEAD2}
+.tag::after{content:"";position:absolute;right:16px;top:16px;width:20px;height:20px;border-radius:50%;background:var(--bg);box-shadow:inset 0 2px 4px rgba(0,0,0,.5)}
+.engrave{font-family:var(--disp);font-weight:800;font-size:1.7rem;line-height:1.05;letter-spacing:.01em;text-shadow:0 1px 0 rgba(255,255,255,.28),0 -1px 0 rgba(0,0,0,.55);padding-right:40px}
+.tag .big{font-family:var(--disp);font-weight:800;font-size:3.6rem;line-height:1;margin-top:10px}
+.tag .big small{font-size:1.4rem}
+.batt{height:14px;border-radius:8px;background:rgba(0,0,0,.4);overflow:hidden;margin-top:8px}
+.batt i{display:block;height:100%;width:0;background:var(--ok);transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.batt i.mid{background:var(--cyan)} .batt i.low{background:var(--warn)}
+.tag .meta{margin-top:10px;font-size:.88rem;opacity:.92}
+.tag .row{margin-top:12px}
+@keyframes drop{from{opacity:0;transform:translateY(-10px) rotate(-1.2deg)}}
+.miss{border-radius:16px;padding:16px;background:var(--card);border:1px dashed var(--line)}
+.miss p{margin-bottom:10px}
+
+/* advice */
+.adv{list-style:none}
+.adv li{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line)}
+.adv li:first-child{border-top:0}
+.adv .dt{width:10px;height:10px;border-radius:50%;margin-top:6px;flex:none;background:var(--blue)}
+.adv .k-ok .dt{background:var(--ok)} .adv .k-warn .dt{background:var(--warn)} .adv .k-go .dt{background:var(--cyan)} .adv .k-msg .dt{background:var(--bad)}
+.adv p{flex:1;font-size:.9rem}
+
+/* stats */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px}
+.stat b{display:block;font-family:var(--disp);font-size:1.45rem;font-weight:800;line-height:1.1}
+.stat span{font-size:.76rem;color:var(--mut)}
+.stat.g b{color:var(--ok)} .stat.c b{color:var(--cyan)}
+
+/* services */
+.svc{display:grid;gap:10px}
+.svc div{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px}
+.svc svg{width:34px;height:34px;flex:none;stroke:var(--cyan);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.svc p{font-size:.84rem;color:var(--mut)}
+
+/* tags grid */
+.seg{display:flex;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px;gap:4px;overflow-x:auto;scrollbar-width:none}
+.seg button{flex:1;border:0;background:none;padding:9px 12px;border-radius:10px;color:var(--mut);font-weight:600;font-size:.82rem;white-space:nowrap}
+.seg button.on{background:var(--blue);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.cell{position:relative;border:1px solid var(--line);background:var(--card);border-radius:14px;padding:8px 2px 11px;text-align:center;overflow:hidden}
+.cell b{display:block;font-family:var(--disp);font-size:1.02rem}
+.cell span{font-size:.68rem;color:var(--mut)}
+.cell i{position:absolute;left:0;bottom:0;height:4px;width:var(--p);background:var(--blue)}
+.cell.ready i{background:var(--ok)} .cell.low i{background:var(--warn)} .cell.none{opacity:.55}
+.cell.watch::before{content:"";position:absolute;top:6px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--warn)}
+
+/* sheet */
+.sheet{position:fixed;inset:0;z-index:70;display:none}
+.sheet.on{display:block}
+.sheet .back{position:absolute;inset:0;background:rgba(2,4,16,.6);backdrop-filter:blur(4px)}
+.sheet .pane{position:absolute;left:0;right:0;bottom:0;max-height:88vh;overflow:auto;background:var(--bg2);border-radius:26px 26px 0 0;padding:14px 16px calc(24px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto;border:1px solid var(--line);animation:up .28s ease-out}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.grab{width:42px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 12px}
+
+/* tools */
+.tilt{transform:perspective(900px) rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg));transition:transform .15s;transform-style:preserve-3d}
+.panel{display:none}
+.panel.on{display:block}
+.disp{background:#070b24;border-radius:16px;padding:12px 16px;text-align:right;margin-bottom:14px;box-shadow:inset 0 3px 10px rgba(0,0,0,.6);color:#EAF0FF}
+.disp small{display:block;min-height:1.1em;color:#7f91d6;font-size:.8rem}
+.disp b{font-family:var(--disp);font-size:2.1rem;font-weight:700;word-break:break-all}
+.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 10px;padding-bottom:8px}
+.key{border:0;border-radius:15px;padding:15px 0;font:700 1.15rem var(--disp);color:#fff;background:linear-gradient(#34459f,#232f7d);box-shadow:0 6px 0 #111a55,0 12px 14px rgba(0,0,0,.35);transition:transform .08s,box-shadow .08s}
+.key:active{transform:translateY(5px);box-shadow:0 1px 0 #111a55,0 3px 6px rgba(0,0,0,.35)}
+.key.op{background:linear-gradient(#6783ff,#3f58e6);box-shadow:0 6px 0 #1f2f9c,0 12px 14px rgba(0,0,0,.35)}
+.key.fn{background:linear-gradient(#56628f,#3b4570);box-shadow:0 6px 0 #1c2342,0 12px 14px rgba(0,0,0,.35)}
+.key.eq{background:linear-gradient(#ffc24a,#f0a000);color:#2a1a00;box-shadow:0 6px 0 #9a6600,0 12px 14px rgba(0,0,0,.35)}
+.sug{margin-top:12px;padding:12px 14px;border-radius:14px;background:rgba(55,214,255,.1);border:1px solid rgba(55,214,255,.3);font-size:.88rem}
+.sug.warn{background:rgba(255,176,32,.1);border-color:rgba(255,176,32,.4)}
+.sug.ok{background:rgba(43,217,138,.1);border-color:rgba(43,217,138,.4)}
+.cart{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line)}
+.cart:first-child{border-top:0}
+.cart small{color:var(--mut);display:block}
+.step{display:flex;align-items:center;gap:10px}
+.step button{width:36px;height:36px;border-radius:12px;border:0;font-weight:800;font-size:1.1rem;color:#fff;background:linear-gradient(#34459f,#232f7d);box-shadow:0 4px 0 #111a55}
+.step button:active{transform:translateY(3px);box-shadow:0 1px 0 #111a55}
+.step b{min-width:22px;text-align:center;font-family:var(--disp)}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;padding-top:12px;border-top:2px solid var(--line)}
+.total b{font-family:var(--disp);font-size:1.7rem}
+.out{font-family:var(--disp);font-size:2rem;font-weight:800;margin-top:8px}
+.scale{display:flex;gap:4px;margin-top:12px}
+.scale i{flex:1;height:26px;border-radius:7px;background:var(--card2);position:relative;display:block;box-shadow:0 4px 0 rgba(0,0,0,.25)}
+.scale i.on{background:linear-gradient(#6783ff,#3f58e6);box-shadow:0 4px 0 #1f2f9c}
+.scale-l{display:flex;gap:4px;font-size:.62rem;color:var(--mut);margin-top:8px}
+.scale-l span{flex:1;text-align:center}
+
+/* charts */
+.cw{position:relative}
+.cw svg{width:100%;height:auto;display:block;touch-action:pan-y}
+.ln{stroke-dasharray:1;animation:draw 1s ease-out}
+@keyframes draw{from{stroke-dashoffset:1}}
+.tip{position:absolute;top:0;transform:translateX(-50%);background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:.76rem;pointer-events:none;white-space:nowrap;box-shadow:0 8px 18px rgba(0,0,0,.3)}
+.tip b{display:block;font-family:var(--disp)}
+.sm-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.sm-stats div{background:var(--card2);border-radius:12px;padding:8px 10px;font-size:.72rem;color:var(--mut)}
+.sm-stats b{display:block;color:var(--text);font-family:var(--disp);font-size:.95rem}
+.donut{display:flex;gap:14px;align-items:center}
+.donut svg{width:140px;height:140px;flex:none}
+.donut .leg{flex:1;display:grid;gap:6px}
+.donut .leg button{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card2);border-radius:11px;padding:7px 10px;font-size:.8rem;text-align:left}
+.donut .leg button.on{border-color:var(--cyan)}
+.donut .leg i{width:10px;height:10px;border-radius:3px;flex:none}
+.donut .leg b{margin-left:auto}
+.bar{display:grid;grid-template-columns:84px 1fr 34px;gap:8px;align-items:center;margin:8px 0;font-size:.82rem}
+.bar div{height:12px;border-radius:7px;background:var(--card2);overflow:hidden}
+.bar div i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:7px;transition:width .6s}
+
+/* more */
+details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px 15px}
+details+details{margin-top:8px}
+summary{font-weight:600;cursor:pointer}
+details p,details li{color:var(--mut);margin-top:8px;font-size:.9rem}
+details ul{padding-left:18px}
+.map{border:0;width:100%;height:240px;border-radius:16px;background:var(--card2)}
+.credit{text-align:center;color:var(--mut);font-size:.84rem;padding:10px 0}
+.credit b{color:var(--text)}
+
+/* tab bar */
+.tabbar{position:fixed;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(440px,calc(100% - 24px));display:grid;grid-template-columns:repeat(5,1fr);gap:2px;z-index:60;padding:6px;border-radius:28px;background:color-mix(in srgb,var(--bg2) 80%,transparent);backdrop-filter:blur(22px) saturate(170%);border:1px solid var(--line);box-shadow:0 14px 34px rgba(0,0,0,.4)}
+.tab{border:0;background:none;color:var(--mut);display:grid;justify-items:center;gap:2px;padding:8px 0 6px;border-radius:22px;font-size:.66rem;font-weight:600;transition:background .2s,color .2s}
+.tab svg{width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tab[aria-current=page]{background:var(--blue);color:#fff}
+
+.toast{position:fixed;left:50%;bottom:104px;transform:translateX(-50%) translateY(20px);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:14px;font-size:.84rem;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:90;max-width:90%;text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo">AB</div>
+      <div><b>AB Oil and Gas</b><small>Abasieyene Ini Investment Limited</small></div>
+    </div>
+    <div class="pill" id="openPill"><i></i><span id="openTxt">Checking</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- HOME -->
+<section class="view stack" id="v-home">
+  <div class="hero">
+    <h1>Where is my charge?</h1>
+    <p>Spin a device, then enter your tag number.</p>
+    <div class="stage" id="stage"><span class="drag-hint">Drag to rotate</span><div class="floor"></div><div class="rig" id="rig"></div></div>
+    <div class="chips" id="devChips"></div>
+  </div>
+
+  <div class="card">
+    <form class="finder" id="finder" autocomplete="off">
+      <input id="tagInput" type="number" inputmode="numeric" min="1" max="100" placeholder="Tag number, 1 to 100" aria-label="Tag number">
+      <button class="btn" type="submit">Check</button>
+    </form>
+    <div class="chips" id="recent" style="margin-top:8px"></div>
+  </div>
+
+  <div id="tagOut" aria-live="polite"></div>
+
+  <div class="card">
+    <h3>Suggestions for you</h3>
+    <ul class="adv" id="advice"></ul>
+  </div>
+
+  <div class="stats" id="overview"></div>
+
+  <div class="card" id="dirCard"></div>
+
+  <div class="svc">
+    <div><svg viewBox="0 0 48 48"><path d="M14 40V10a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v30M10 40h26"/><path d="M32 18h4a3 3 0 0 1 3 3v12a3 3 0 0 0 3 3"/><path d="M18 14h10v8H18z"/></svg><section><h3>Petroleum</h3><p>Fuel for your car, bike and generator.</p></section></div>
+    <div><svg viewBox="0 0 48 48"><rect x="8" y="10" width="32" height="28" rx="5"/><path d="M8 20h32M15 30h8"/></svg><section><h3>POS</h3><p>Withdraw and transfer cash at the station.</p></section></div>
+    <div><svg viewBox="0 0 48 48"><rect x="14" y="6" width="20" height="36" rx="5"/><path d="M26 15l-5 8h6l-5 8"/></svg><section><h3>Device charging</h3><p>Drop your device, get a tag, collect when full.</p></section></div>
+  </div>
+</section>
+
+<!-- TAGS -->
+<section class="view stack" id="v-tags">
+  <h2>All tags</h2>
+  <div class="seg" id="tagFilter">
+    <button data-f="all" class="on">All</button>
+    <button data-f="ready">Ready</button>
+    <button data-f="charging">Charging</button>
+    <button data-f="none">Not written</button>
+    <button data-f="watch">Watching</button>
+  </div>
+  <div class="grid" id="tagGrid"></div>
+  <p class="mut" style="font-size:.82rem">Percentages are written in from time to time. Tap a tag for details. Last updated <b id="updTags"></b>.</p>
+</section>
+
+<!-- TOOLS -->
+<section class="view stack" id="v-tools">
+  <h2>Calculators</h2>
+  <div class="seg" id="toolSeg">
+    <button data-t="keypad" class="on">Keypad</button>
+    <button data-t="cost">Charging</button>
+    <button data-t="fuel">Fuel</button>
+    <button data-t="pos">POS</button>
+    <button data-t="time">Charge time</button>
+  </div>
+
+  <div class="card tilt panel on" data-p="keypad">
+    <div class="disp"><small id="cExpr"></small><b id="cOut">0</b></div>
+    <div class="keys" id="keys"></div>
+    <div class="sug" id="cSug">Type an amount to see what it buys in petrol.</div>
+  </div>
+
+  <div class="card tilt panel" data-p="cost">
+    <h3>Charging cost</h3>
+    <div id="cartRows"></div>
+    <div class="total"><span class="mut">Total</span><b id="cartTotal">NGN 0</b></div>
+    <div class="sug" id="cartSug"></div>
+  </div>
+
+  <div class="card tilt panel" data-p="fuel">
+    <h3>Fuel</h3>
+    <label for="fNgn">Amount (NGN)</label>
+    <input id="fNgn" type="number" inputmode="decimal" placeholder="e.g. 5000">
+    <div class="chips" id="fChips" style="margin-top:8px"></div>
+    <label for="fLit">Litres</label>
+    <input id="fLit" type="number" inputmode="decimal" placeholder="e.g. 5.5">
+    <label for="fKml">Your vehicle: km per litre</label>
+    <input id="fKml" type="number" inputmode="decimal" value="10">
+    <div class="out" id="fOut">0 L</div>
+    <div class="sug" id="fSug"></div>
+  </div>
+
+  <div class="card tilt panel" data-p="pos">
+    <h3>POS withdrawal scale</h3>
+    <label for="pAmt">Amount to withdraw (NGN)</label>
+    <input id="pAmt" type="number" inputmode="decimal" placeholder="e.g. 20000">
+    <div class="chips" id="pChips" style="margin-top:8px"></div>
+    <div class="out" id="pOut">NGN 0</div>
+    <p class="mut" id="pFee"></p>
+    <div class="scale" id="pScale"></div>
+    <div class="scale-l" id="pScaleL"></div>
+    <div class="sug" id="pSug"></div>
+  </div>
+
+  <div class="card tilt panel" data-p="time">
+    <h3>Charge time</h3>
+    <label for="tDev">Device</label>
+    <select id="tDev"></select>
+    <label for="tFrom">Now at: <b id="tFromV">20%</b></label>
+    <input id="tFrom" type="range" min="0" max="99" value="20">
+    <label for="tTo">Collect at: <b id="tToV">100%</b></label>
+    <input id="tTo" type="range" min="1" max="100" value="100">
+    <div class="out" id="tOut">0 min</div>
+    <div class="scale" id="tScale"></div>
+    <div class="sug" id="tSug"></div>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section class="view stack" id="v-market">
+  <h2>Market movement</h2>
+  <div class="card">
+    <div class="seg" id="mMetric">
+      <button data-m="petrol" class="on">Petrol</button>
+      <button data-m="pos">POS cash</button>
+      <button data-m="dev">Devices</button>
+    </div>
+    <div class="seg" id="mRange" style="margin-top:8px">
+      <button data-r="7" class="on">7 days</button>
+      <button data-r="30">30 days</button>
+    </div>
+    <div class="cw" id="chart" style="margin-top:12px"></div>
+    <div class="sm-stats" id="mStats"></div>
+    <div class="sug" id="mSug"></div>
+    <p class="mut" style="font-size:.74rem;margin-top:8px">Earlier days are sample data until real days are logged in the attendant panel.</p>
+  </div>
+  <div class="card">
+    <h3>Tag status</h3>
+    <div class="donut" id="donut"></div>
+  </div>
+  <div class="card">
+    <h3>Device mix on the board</h3>
+    <div id="bars"></div>
+  </div>
+</section>
+
+<!-- MORE -->
+<section class="view stack" id="v-more">
+  <h2>More</h2>
+
+  <div class="card">
+    <h3>Attendant panel</h3>
+    <div id="lock">
+      <p class="mut" style="font-size:.86rem">Enter the PIN to edit percentages, POS cash and petrol price.</p>
+      <div class="finder" style="margin-top:10px"><input id="pin" type="password" inputmode="numeric" placeholder="PIN" aria-label="PIN"><button class="btn" id="unlock">Unlock</button></div>
+    </div>
+    <div id="admin" hidden>
+      <label for="aN">Tag number</label>
+      <input id="aN" type="number" inputmode="numeric" min="1" max="100" placeholder="1 to 100">
+      <label for="aPn">Percentage: <b id="aPv">0%</b></label>
+      <input id="aP" type="range" min="0" max="100" value="0">
+      <div class="row" style="margin-top:6px">
+        <select id="aT" style="flex:1"></select>
+        <input id="aPn" type="number" inputmode="numeric" min="0" max="100" value="0" style="width:90px">
+      </div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn sm" id="aSave">Save tag</button>
+        <button class="btn sm alt" id="aMinus">-10</button>
+        <button class="btn sm alt" id="aPlus">+10</button>
+        <button class="btn sm amber" id="aFull">Full</button>
+        <button class="btn sm bad" id="aDel">Collected</button>
+      </div>
+      <label for="aBulk">Bulk edit (tag=percent, separated by commas)</label>
+      <textarea id="aBulk" placeholder="12=100, 45=35, 89=72"></textarea>
+      <div class="row" style="margin-top:8px"><button class="btn sm" id="aBulkGo">Apply bulk</button></div>
+
+      <h3 style="margin-top:20px">Station board</h3>
+      <label for="aPos">POS cash available (NGN)</label><input id="aPos" type="number" inputmode="numeric">
+      <label for="aPet">Petrol price per litre (NGN)</label><input id="aPet" type="number" inputmode="numeric">
+      <div class="row"><div style="flex:1"><label for="aOpen">Opens</label><input id="aOpen" type="time"></div><div style="flex:1"><label for="aClose">Closes</label><input id="aClose" type="time"></div></div>
+      <label for="aDev">Devices dropped today</label><input id="aDev" type="number" inputmode="numeric" value="0">
+      <div class="row" style="margin-top:12px"><button class="btn sm" id="aSaveSt">Save board</button><button class="btn sm alt" id="aLog">Log today for charts</button></div>
+
+      <h3 style="margin-top:20px">Data</h3>
+      <textarea id="aJson" placeholder="Export or paste JSON here"></textarea>
+      <div class="row" style="margin-top:8px">
+        <button class="btn sm alt" id="aExport">Export</button>
+        <button class="btn sm alt" id="aImport">Import</button>
+        <button class="btn sm amber" id="aPublish">Publish</button>
+        <button class="btn sm bad" id="aReset">Reset</button>
+      </div>
+      <label for="aNewPin">Change PIN</label>
+      <div class="finder"><input id="aNewPin" type="password" inputmode="numeric" placeholder="New PIN"><button class="btn sm alt" id="aPinGo">Save PIN</button></div>
+      <div class="row" style="margin-top:14px"><button class="btn sm alt" id="aLock">Lock panel</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Preferences</h3>
+    <div class="row"><button class="btn sm alt" id="themeBtn">Switch theme</button><button class="btn sm alt" id="clearBtn">Clear saved data on this phone</button></div>
+  </div>
+
+  <div>
+    <details><summary>FAQ</summary>
+      <p><b>How do I see my charge?</b> Enter the number on your blue tag in the Home tab. Tags run from 1 to 100.</p>
+      <p><b>My tag shows nothing.</b> We write percentages in from time to time. Message us and we will check.</p>
+      <p><b>I lost my tag.</b> We cannot release your item without the original tag. Please keep your tag safe.</p>
+      <p><b>Can I do POS here?</b> Yes. The POS cash on the board shows what is available today.</p>
+    </details>
+    <details><summary>Security services</summary>
+      <ul><li>Every device gets a numbered tag at drop-off.</li><li>Items are released only to the person presenting the original claim tag.</li><li>Devices stay in our supervised charging area.</li></ul>
+    </details>
+    <details><summary>Terms</summary>
+      <ul><li>Lost tags mean unclaimed items.</li><li>Due to repeated loss of claim tags, we no longer release any phone or property without the original tag issued at drop-off.</li><li>If you lose your tag, we cannot release your items. Please keep your tag safe.</li></ul>
+    </details>
+    <details><summary>Technology</summary>
+      <ul><li>Runs in any phone browser with no install.</li><li>Your recent tags, watchlist and settings are saved on your phone.</li><li>Built with plain HTML, CSS and JavaScript by Figsh Digital.</li></ul>
+    </details>
+  </div>
+
+  <div class="card">
+    <h3>Find us</h3>
+    <p class="mut">Etinan, Akwa Ibom State, Nigeria</p>
+    <div id="mapBox" style="margin-top:10px"></div>
+    <div class="row" style="margin-top:12px">
+      <a class="btn" data-act="wa" href="#">WhatsApp us</a>
+      <a class="btn alt" data-act="dir" href="#">Get directions</a>
+    </div>
+  </div>
+
+  <div class="credit">
+    <p><a class="btn amber sm" data-act="wa" data-msg="Hello Figsh, I want to support the developer" href="#">Support the developer</a></p>
+    <p style="margin-top:12px">Developed by <b>Figsh</b></p>
+    <p>Contributors: <b>AB Limited</b></p>
+    <p>WhatsApp 2348168906132</p>
+    <p style="margin-top:6px">Last updated <b id="updMore"></b></p>
+  </div>
+</section>
+
+</main>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Tag details">
+  <div class="back" data-act="close"></div>
+  <div class="pane"><div class="grab"></div><div id="sheetBody" class="stack"></div></div>
+</div>
+
+<nav class="tabbar" id="tabbar" aria-label="Main"></nav>
+<div class="toast" id="toast" role="status"></div>
+<noscript><p style="padding:20px">Please enable JavaScript to use this app.</p></noscript>
+
+<script>
+(() => {
+"use strict";
+
+/* ===================== EDIT THIS BLOCK ===================== */
+const CONFIG = {
+  whatsapp: "2348168906132",
+  station: { lat: 4.8556, lng: 7.8514 },            // replace with the exact station coordinates
+  hours: { open: "08:00", close: "20:00" },          // sample opening hours
+  pin: "1234",                                       // default attendant PIN, change it in the app
+  api: "",                                            // later: "/.netlify/functions/ab-data"
+  dataVersion: 1,                                    // bump this to push new DEFAULTS to every phone
+  rates: { phone: 1.2, laptop: 0.6, powerbank: 0.5, solar: 0.3, spicer: 0.4 }, // sample % gained per minute
+  posFees: [[5000, 100], [10000, 150], [20000, 200], [50000, 400], [100000, 700]], // sample [upTo, fee]
+  tankLitres: 40
+};
+const DEVICES = [
+  { id: "phone", label: "Phone", price: 100 },
+  { id: "laptop", label: "Laptop", price: 200 },
+  { id: "powerbank", label: "Power bank", price: 200 },
+  { id: "solar", label: "Solar", price: 500 },
+  { id: "spicer", label: "Spicer", price: 500 }
+];
+/* tags: { tagNumber: percent }  types: { tagNumber: deviceId } */
+const DEFAULTS = {
+  tags: { 51: 100, 74: 100, 45: 35, 7: 18, 1: 100 },
+  types: { 89: "phone", 12: "laptop", 45: "powerbank", 7: "phone", 23: "phone" },
+  posCash: 250000,
+  petrol: 900,
+  updated: "2026-10-13T14:44:44"
+};
+/* =========================================================== */
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const nf = n => Number(n).toLocaleString("en-NG");
+const naira = n => "NGN " + nf(Math.round(n));
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const vib = (ms = 8) => { try { navigator.vibrate && navigator.vibrate(ms); } catch (e) {} };
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const devLabel = id => (DEVICES.find(d => d.id === id) || DEVICES[0]).label;
+
+/* ---------- state + localStorage ---------- */
+const KEY = "ab_state_v1";
+function fresh(old) {
+  const prefs = Object.assign({ theme: "dark", recent: [], watch: [], seen: {}, tab: "home", pos: null, cart: {}, kml: 10 }, (old && old.prefs) || {});
+  return { v: CONFIG.dataVersion, tags: { ...DEFAULTS.tags }, types: { ...DEFAULTS.types }, posCash: DEFAULTS.posCash,
+    petrol: DEFAULTS.petrol, updated: DEFAULTS.updated, logs: {}, hours: { ...CONFIG.hours }, pin: CONFIG.pin, prefs };
+}
+function load() {
+  let s = null;
+  try { s = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+  if (!s || s.v !== CONFIG.dataVersion) return fresh(s);
+  const base = fresh(s);
+  return Object.assign(base, s, { prefs: Object.assign(base.prefs, s.prefs || {}) });
+}
+let S = load();
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
+function touch() { S.updated = new Date().toISOString(); save(); refreshAll(); }
+
+/* ---------- tag data API (also on window.AB for console edits) ---------- */
+function setTag(n, p, type) {
+  n = Math.round(+n); p = Math.round(+p);
+  if (!(n >= 1 && n <= 100) || isNaN(p)) return false;
+  S.tags[n] = clamp(p, 0, 100);
+  if (type) S.types[n] = type;
+  touch(); return true;
+}
+function clearTag(n) { delete S.tags[n]; delete S.types[n]; touch(); }
+const stOf = v => v === undefined ? "none" : v >= 100 ? "ready" : v < 30 ? "low" : "mid";
+
+/* ---------- time + place ---------- */
+const toMin = t => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+const clock = d => d.toLocaleTimeString("en-NG", { hour: "numeric", minute: "2-digit" });
+const at = mins => { const d = new Date(); d.setHours(Math.floor(mins / 60), mins % 60, 0, 0); return d; };
+function openInfo(now = new Date()) {
+  const m = now.getHours() * 60 + now.getMinutes();
+  const o = toMin(S.hours.open), c = toMin(S.hours.close);
+  return { open: m >= o && m < c, openT: clock(at(o)), closeT: clock(at(c)), closeD: at(c) };
+}
+const dur = m => m < 60 ? m + " min" : Math.floor(m / 60) + "h " + (m % 60) + "m";
+function haversine(a, b, c, d) {
+  const R = 6371, r = x => x * Math.PI / 180;
+  const dLat = r(c - a), dLng = r(d - b);
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(r(a)) * Math.cos(r(c)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+function distKm() {
+  const p = S.prefs.pos; if (!p) return null;
+  return haversine(p.lat, p.lng, CONFIG.station.lat, CONFIG.station.lng) * 1.3;
+}
+function locate() {
+  if (!navigator.geolocation) return toast("Location is not supported on this phone.");
+  toast("Finding you...");
+  navigator.geolocation.getCurrentPosition(p => {
+    S.prefs.pos = { lat: p.coords.latitude, lng: p.coords.longitude, t: Date.now() };
+    save(); refreshAdvice(); renderDir(); toast("Location saved on this phone.");
+  }, () => toast("Location blocked. Allow it in your browser to get travel times."), { timeout: 9000, maximumAge: 600000 });
+}
+const dirUrl = () => `https://www.google.com/maps/dir/?api=1&destination=${CONFIG.station.lat},${CONFIG.station.lng}&travelmode=driving`;
+const wa = t => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(t)}`;
+
+/* ---------- history (sample base + logged days) ---------- */
+const rnd = s => { const x = Math.sin(s * 9301.7) * 10000; return x - Math.floor(x); };
+const hashStr = s => [...s].reduce((a, c) => a * 31 + c.charCodeAt(0), 7) % 100000;
+const dayKey = d => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+function history(days = 30) {
+  const out = [], today = new Date();
+  for (let i = days - 1; i >= 0; i--) {
+    const d = new Date(today); d.setDate(d.getDate() - i);
+    const k = dayKey(d), sd = hashStr(k), n = days - 1 - i;
+    let petrol = Math.round((DEFAULTS.petrol - 25 + n * 0.8 + (rnd(sd) - .5) * 14) / 5) * 5;
+    let pos = Math.round((DEFAULTS.posCash + (rnd(sd + 1) - .5) * 140000) / 1000) * 1000;
+    let dev = 28 + Math.round(rnd(sd + 2) * 30);
+    const lg = S.logs[k];
+    if (lg) { petrol = lg.petrol ?? petrol; pos = lg.pos ?? pos; dev = lg.devices ?? dev; }
+    if (i === 0) { petrol = S.petrol; pos = S.posCash; }
+    out.push({ k, l: d.toLocaleDateString("en-NG", { day: "numeric", month: "short" }), petrol, pos, dev });
+  }
+  return out;
+}
+
+/* ---------- toast + icons ---------- */
+let tt;
+function toast(m) { const t = $("#toast"); t.textContent = m; t.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("on"), 2600); }
+const ICON = {
+  home: '<path d="M3.5 11.5 12 4l8.5 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/>',
+  tags: '<rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/>',
+  tools: '<rect x="5" y="3" width="14" height="18" rx="3"/><path d="M8.5 7.5h7"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01" stroke-width="2.6"/>',
+  market: '<path d="M4 19V5"/><path d="M4 19h16"/><path d="m7.5 14.5 3.5-4.5 3 2.5 4.5-6"/>',
+  more: '<path d="M5 8h9M18 8h1M5 16h1M10 16h9"/><circle cx="16" cy="8" r="2"/><circle cx="8" cy="16" r="2"/>'
+};
+const TABS = [["home", "Home"], ["tags", "Tags"], ["tools", "Tools"], ["market", "Market"], ["more", "More"]];
+$("#tabbar").innerHTML = TABS.map(([id, l]) => `<button class="tab" data-tab="${id}" aria-label="${l}"><svg viewBox="0 0 24 24">${ICON[id]}</svg>${l}</button>`).join("");
+
+/* ---------- navigation ---------- */
+let mapLoaded = false;
+function go(tab) {
+  S.prefs.tab = tab; save();
+  $$(".view").forEach(v => v.classList.toggle("on", v.id === "v-" + tab));
+  $$(".tab").forEach(b => b.toggleAttribute("aria-current", b.dataset.tab === tab) || (b.dataset.tab === tab && b.setAttribute("aria-current", "page")));
+  $$(".tab").forEach(b => { if (b.dataset.tab === tab) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+  if (tab === "more" && !mapLoaded) {
+    mapLoaded = true;
+    $("#mapBox").innerHTML = '<iframe class="map" title="Map of Etinan" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=7.82%2C4.83%2C7.88%2C4.88&layer=mapnik&marker=' + CONFIG.station.lat + '%2C' + CONFIG.station.lng + '"></iframe>';
+  }
+  if (tab === "market") renderMarket();
+  window.scrollTo({ top: 0 });
+}
+$("#tabbar").addEventListener("click", e => { const b = e.target.closest(".tab"); if (b) { vib(); go(b.dataset.tab); } });
+
+/* ---------- decision engine ---------- */
+function advise(n) {
+  const L = [], now = new Date(), o = openInfo(now), km = distKm();
+  const travel = km == null ? null : Math.max(1, Math.round(km / 25 * 60));
+  if (n) {
+    const v = S.tags[n], type = S.types[n] || "phone", rate = CONFIG.rates[type] || 1;
+    if (v === undefined) L.push(["msg", `Tag ${n} has no percentage yet. We write them in from time to time.`, "wa", n]);
+    else if (v >= 100) {
+      L.push(["ok", `Tag ${n} is fully charged. Bring the original tag to collect it.`]);
+      if (!o.open) L.push(["warn", `We are closed now. Collect from ${o.openT}.`]);
+      else if (travel != null) L.push(["go", `You are about ${travel} min away by bike. We close at ${o.closeT}.`, "dir"]);
+    } else {
+      const mins = Math.ceil((100 - v) / rate), ready = new Date(now.getTime() + mins * 60000);
+      L.push(["go", `Tag ${n} (${devLabel(type).toLowerCase()}) is at ${v}%. About ${dur(mins)} to full, around ${clock(ready)}.`]);
+      if (ready > o.closeD) L.push(["warn", `It will not reach 100% before we close at ${o.closeT}. Collect tomorrow, or come earlier and take it part charged.`]);
+      else if (travel != null) {
+        const leave = new Date(ready.getTime() - travel * 60000);
+        L.push(["go", leave > now ? `Leave around ${clock(leave)} to arrive as it reaches 100%.` : `If you leave now you arrive about ${Math.max(0, mins - travel)} min before it reaches 100%.`, "dir"]);
+      }
+    }
+  }
+  if (!n) L.push(o.open ? ["ok", `Open now until ${o.closeT}.`] : ["warn", `We are closed. Opens at ${o.openT}.`]);
+  if (S.posCash < 50000) L.push(["warn", `POS cash is low today (${naira(S.posCash)}). Message us before a big withdrawal.`, "wa"]);
+  else if (!n) L.push(["ok", `POS cash available: ${naira(S.posCash)}.`]);
+  const h = history(2), diff = h[1].petrol - h[0].petrol;
+  if (!n) L.push([diff > 0 ? "warn" : "ok", diff === 0 ? `Petrol is steady at ${naira(S.petrol)} per litre.` : diff > 0 ? `Petrol rose ${naira(diff)} since yesterday, now ${naira(S.petrol)}. Fill up today if you can.` : `Petrol dropped ${naira(-diff)} since yesterday, now ${naira(S.petrol)}. Good day to fill.`]);
+  if (km == null) L.push(["go", "Share your location to get travel time and when to leave.", "locate"]);
+  return L;
+}
+const ACT = { wa: "Message us", dir: "Directions", locate: "Use my location" };
+function adviceHTML(list, n) {
+  return list.map(([k, t, a]) => `<li class="k-${k}"><span class="dt"></span><p>${t}</p>${a ? `<button class="btn sm alt" data-act="${a}" ${a === "wa" ? `data-msg="Hello, please check tag ${a === "wa" && n ? n : ""}"` : ""}>${ACT[a]}</button>` : ""}</li>`).join("");
+}
+let curTag = null;
+function refreshAdvice() { $("#advice").innerHTML = adviceHTML(advise(curTag), curTag); }
+
+/* ---------- 3D devices (CSS 3D, no library) ---------- */
+function box(w, h, d, faces, tf) {
+  const b = document.createElement("div"); b.className = "bx"; if (tf) b.style.transform = tf;
+  const defs = {
+    front: [w, h, `translateZ(${d / 2}px)`, -w / 2, -h / 2],
+    back: [w, h, `rotateY(180deg) translateZ(${d / 2}px)`, -w / 2, -h / 2],
+    right: [d, h, `rotateY(90deg) translateZ(${w / 2}px)`, -d / 2, -h / 2],
+    left: [d, h, `rotateY(-90deg) translateZ(${w / 2}px)`, -d / 2, -h / 2],
+    top: [w, d, `rotateX(90deg) translateZ(${h / 2}px)`, -w / 2, -d / 2],
+    bottom: [w, d, `rotateX(-90deg) translateZ(${h / 2}px)`, -w / 2, -d / 2]
+  };
+  for (const k in defs) {
+    const [fw, fh, t, l, tp] = defs[k], c = faces[k] || faces.all || "#222";
+    const f = document.createElement("div"); f.className = "f";
+    f.style.cssText = `width:${fw}px;height:${fh}px;left:${l}px;top:${tp}px;transform:${t};background:${Array.isArray(c) ? c[0] : c}`;
+    if (Array.isArray(c)) f.innerHTML = c[1];
+    b.appendChild(f);
+  }
+  return b;
+}
+const grp = (tf, ...kids) => { const g = document.createElement("div"); g.className = "bx"; g.style.transform = tf; kids.forEach(k => g.appendChild(k)); return g; };
+const scr = v => `<div class="scr"><small>AB Oil and Gas</small><b>${v == null ? "--" : v}<sup>%</sup></b><div class="bt"><i style="width:${v || 0}%"></i></div></div>`;
+const BUILD = {
+  phone: v => [box(92, 188, 10, { front: ["linear-gradient(160deg,#141c4d,#050816)", scr(v)], back: ["linear-gradient(160deg,#5b78ff,#1b2a9c)", '<span class="cam"></span>'], all: "#2f3b86", top: "#4656b4", bottom: "#222a5c" })],
+  laptop: v => [
+    box(220, 8, 150, { top: ["linear-gradient(#2d3868,#1c2450)", '<div class="kb"></div>'], front: "#4656b4", back: "#2a3470", left: "#33408a", right: "#33408a", bottom: "#1a2150" }, "translate3d(0,50px,0)"),
+    grp("translate3d(0,46px,-72px) rotateX(10deg)", box(220, 140, 6, { front: ["linear-gradient(160deg,#141c4d,#050816)", scr(v)], back: "linear-gradient(160deg,#5b78ff,#1b2a9c)", all: "#2f3b86" }, "translate3d(0,-70px,0)"))
+  ],
+  powerbank: v => [box(72, 134, 26, { front: ["linear-gradient(160deg,#f1f4ff,#9fb0ff)", `<div class="pb"><b>${v == null ? "--" : v + "%"}</b><span>${[20, 40, 60, 80].map(t => `<i class="${v >= t ? "on" : ""}"></i>`).join("")}</span></div>`], back: "linear-gradient(160deg,#8aa0ff,#4c6bff)", all: "#7a8fe8", top: "#b8c6ff" })],
+  solar: v => [
+    box(220, 8, 90, { all: "#2a3470", top: "#3a4690" }, "translate3d(0,92px,0)"),
+    box(10, 80, 10, { all: "#7d89c9" }, "translate3d(0,50px,-10px)"),
+    box(212, 142, 6, { front: ["", '<div class="sol"></div>'], back: "#1f2a66", all: "#6f7fd0" }, "translate3d(0,0,0) rotateX(52deg)")
+  ],
+  spicer: v => BUILD.pump(v),
+  pump: v => [
+    box(136, 10, 84, { all: "#222a5c", top: "#323d84" }, "translate3d(0,95px,0)"),
+    box(112, 170, 64, { front: ["linear-gradient(#eaeeff,#b8c3ff)", `<div class="pd"><span>Petrol NGN per litre</span><b>${S.petrol}</b></div><div class="pl"></div><div class="pl" style="width:30%"></div>`], back: "#c5cfff", left: "#8f9cf0", right: "#8f9cf0", top: "#aab6ff", bottom: "#6674d0" }, "translate3d(0,5px,0)"),
+    box(126, 16, 78, { all: "#3f58e6", top: "#6f88ff" }, "translate3d(0,-88px,0)"),
+    box(18, 64, 24, { all: "#1b2a9c" }, "translate3d(66px,14px,0)"),
+    box(4, 70, 4, { all: "#0b0f2e" }, "translate3d(74px,64px,12px)")
+  ]
+};
+BUILD.spicer = v => [
+  box(150, 14, 90, { all: "#222a5c", top: "#323d84" }, "translate3d(0,92px,0)"),
+  box(110, 120, 70, { front: ["linear-gradient(#eef1ff,#aebbff)", scr(v)], back: "#c5cfff", all: "#8f9cf0", top: "#b6c1ff" }, "translate3d(0,25px,0)"),
+  box(40, 46, 30, { all: "#3f58e6", top: "#6f88ff" }, "translate3d(-30px,-58px,0)"),
+  box(14, 60, 14, { all: "#7d89c9" }, "translate3d(30px,-52px,0)")
+];
+const STAGE = [["phone", "Phone"], ["laptop", "Laptop"], ["powerbank", "Power bank"], ["solar", "Solar"], ["spicer", "Spicer"], ["pump", "Fuel pump"]];
+let curDev = "phone", rot = { x: -14, y: -28 }, drag = null, idle = 0;
+const rig = $("#rig"), stage = $("#stage");
+function stageVal() { return curTag != null ? S.tags[curTag] : undefined; }
+function setDevice(id) {
+  curDev = id; rig.innerHTML = ""; BUILD[id](stageVal()).forEach(e => rig.appendChild(e));
+  $$("#devChips .chip").forEach(c => c.classList.toggle("on", c.dataset.d === id));
+}
+$("#devChips").innerHTML = STAGE.map(([id, l]) => `<button class="chip" data-d="${id}">${l}</button>`).join("");
+$("#devChips").addEventListener("click", e => { const c = e.target.closest(".chip"); if (c) { vib(); setDevice(c.dataset.d); } });
+const applyRot = () => { rig.style.setProperty("--rx", rot.x + "deg"); rig.style.setProperty("--ry", rot.y + "deg"); };
+stage.addEventListener("pointerdown", e => { drag = { x: e.clientX, y: e.clientY }; try { stage.setPointerCapture(e.pointerId); } catch (_) {} });
+stage.addEventListener("pointermove", e => {
+  if (!drag) return;
+  rot.y += (e.clientX - drag.x) * 0.6; rot.x = clamp(rot.x - (e.clientY - drag.y) * 0.4, -60, 60);
+  drag = { x: e.clientX, y: e.clientY }; idle = performance.now(); applyRot();
+});
+["pointerup", "pointercancel"].forEach(t => stage.addEventListener(t, () => { drag = null; }));
+(function tick(t) {
+  if (!drag && !reduced && S.prefs.tab === "home" && t - idle > 2500) { rot.y += 0.25; applyRot(); }
+  requestAnimationFrame(tick);
+})(0);
+
+/* ---------- tag finder ---------- */
+function tagCard(n) {
+  const v = S.tags[n], watching = S.prefs.watch.includes(n);
+  if (v === undefined) return `<div class="miss"><p>No percentage for tag ${n} yet. We write them in from time to time.</p><div class="row"><button class="btn sm" data-act="wa" data-msg="Hello, please check tag ${n}">Ask about tag ${n}</button></div></div>`;
+  const cls = v < 30 ? "low" : v < 70 ? "mid" : "";
+  const rate = CONFIG.rates[S.types[n] || "phone"] || 1;
+  const meta = v >= 100 ? "Fully charged. Ready for collection with your tag." : `${devLabel(S.types[n] || "phone")} charging. About ${dur(Math.ceil((100 - v) / rate))} to full.`;
+  return `<div class="tag"><div class="engrave">ABA'S INI<br>TAG ${n}</div><div class="big">${v}<small>%</small></div>
+    <div class="batt"><i class="${cls}" data-w="${v}"></i></div><p class="meta">${meta}</p>
+    <div class="row"><button class="btn sm amber" data-act="watch" data-n="${n}">${watching ? "Stop watching" : "Watch this tag"}</button><button class="btn sm alt" data-act="share" data-n="${n}">Share link</button></div></div>`;
+}
+function animBars(root) { requestAnimationFrame(() => requestAnimationFrame(() => $$("[data-w]", root).forEach(i => i.style.width = i.dataset.w + "%"))); }
+function findTag(n) {
+  n = Math.round(+n);
+  const out = $("#tagOut");
+  if (!(n >= 1 && n <= 100)) { out.innerHTML = '<div class="miss"><p>Tags run from 1 to 100. Check the number on your tag and try again.</p></div>'; return; }
+  curTag = n;
+  S.prefs.recent = [n, ...S.prefs.recent.filter(x => x !== n)].slice(0, 6); save();
+  $("#tagInput").value = n;
+  out.innerHTML = tagCard(n); animBars(out);
+  if (S.tags[n] !== undefined) setDevice(S.types[n] === "pump" ? "phone" : (S.types[n] || "phone")); else setDevice(curDev);
+  renderRecent(); refreshAdvice();
+  try { history.replaceState(null, "", "?tag=" + n); } catch (e) {}
+}
+$("#finder").addEventListener("submit", e => { e.preventDefault(); vib(); findTag($("#tagInput").value); });
+function renderRecent() {
+  $("#recent").innerHTML = S.prefs.recent.map(n => `<button class="chip" data-act="find" data-n="${n}">Tag ${n}</button>`).join("");
+}
+function toggleWatch(n) {
+  const w = S.prefs.watch, i = w.indexOf(n);
+  if (i >= 0) w.splice(i, 1); else { w.push(n); S.prefs.seen[n] = S.tags[n]; }
+  save(); toast(i >= 0 ? `Stopped watching tag ${n}` : `Watching tag ${n}. You will see changes when you open the app.`);
+  if (curTag === n) { $("#tagOut").innerHTML = tagCard(n); animBars($("#tagOut")); }
+  renderGrid(); if ($("#sheet").classList.contains("on")) openSheet(n);
+}
+function share(n) {
+  const url = location.href.split("?")[0] + "?tag=" + n;
+  if (navigator.share) navigator.share({ title: "AB Oil and Gas tag " + n, url }).catch(() => {});
+  else if (navigator.clipboard) navigator.clipboard.writeText(url).then(() => toast("Link copied"));
+  else toast(url);
+}
+function checkWatch() {
+  S.prefs.watch.forEach(n => {
+    const now = S.tags[n], was = S.prefs.seen[n];
+    if (now !== was) {
+      toast(now === undefined ? `Tag ${n} was collected.` : now >= 100 ? `Tag ${n} is fully charged. Ready to collect.` : `Tag ${n} is now ${now}%` + (was != null ? ` (was ${was}%)` : ""));
+      S.prefs.seen[n] = now;
+    }
+  });
+  save();
+}
+
+/* ---------- overview, directions ---------- */
+function countTo(el, to, fmt = nf) {
+  if (reduced) { el.textContent = fmt(to); return; }
+  const t0 = performance.now();
+  (function f(t) { const p = Math.min(1, (t - t0) / 700); el.textContent = fmt(Math.round(to * (1 - Math.pow(1 - p, 3)))); if (p < 1) requestAnimationFrame(f); })(t0);
+}
+let ovDone = false;
+function renderOverview() {
+  const vals = Object.values(S.tags), ready = vals.filter(v => v >= 100).length, ch = vals.length - ready;
+  const avg = vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : 0;
+  $("#overview").innerHTML = `
+    <div class="stat g"><b data-c="${ready}">${ready}</b><span>Ready to collect</span></div>
+    <div class="stat c"><b data-c="${ch}">${ch}</b><span>Charging now</span></div>
+    <div class="stat"><b>${naira(S.posCash)}</b><span>POS cash available</span></div>
+    <div class="stat"><b>${naira(S.petrol)}</b><span>Petrol per litre</span></div>
+    <div class="stat"><b data-c="${avg}" data-p="%">${avg}%</b><span>Average charge</span></div>
+    <div class="stat"><b>${new Date(S.updated).toLocaleTimeString("en-NG", { hour: "numeric", minute: "2-digit" })}</b><span>Last updated today</span></div>`;
+  if (!ovDone) { ovDone = true; $$("#overview [data-c]").forEach(el => countTo(el, +el.dataset.c, v => v + (el.dataset.p || ""))); }
+}
+function renderDir() {
+  const km = distKm();
+  const modes = km == null ? "" : `<div class="stats" style="margin:12px 0 4px">
+    <div class="stat"><b>${km.toFixed(1)} km</b><span>Away from you</span></div>
+    <div class="stat"><b>${dur(Math.max(1, Math.round(km / 25 * 60)))}</b><span>By bike</span></div>
+    <div class="stat"><b>${dur(Math.max(1, Math.round(km / 5 * 60)))}</b><span>On foot</span></div>
+    <div class="stat"><b>${dur(Math.max(1, Math.round(km / 30 * 60)))}</b><span>By car</span></div></div>`;
+  $("#dirCard").innerHTML = `<h3>Directions</h3><p class="mut" style="font-size:.88rem">Etinan, Akwa Ibom State. ${km == null ? "Share your location to see distance and travel time." : "Travel times are estimates."}</p>${modes}
+    <div class="row" style="margin-top:12px"><button class="btn" data-act="dir">Open in Maps</button><button class="btn alt" data-act="locate">${km == null ? "Use my location" : "Refresh location"}</button></div>`;
+}
+
+/* ---------- tag grid + sheet ---------- */
+let tagF = "all";
+function renderGrid() {
+  let h = "";
+  for (let n = 1; n <= 100; n++) {
+    const v = S.tags[n], st = stOf(v), w = S.prefs.watch.includes(n);
+    if (tagF === "ready" && st !== "ready") continue;
+    if (tagF === "charging" && !(v !== undefined && v < 100)) continue;
+    if (tagF === "none" && st !== "none") continue;
+    if (tagF === "watch" && !w) continue;
+    h += `<button class="cell ${st} ${w ? "watch" : ""}" data-act="open" data-n="${n}" aria-label="Tag ${n}"><b>${n}</b><span>${v === undefined ? "-" : v + "%"}</span><i style="--p:${v || 0}%"></i></button>`;
+  }
+  $("#tagGrid").innerHTML = h || '<p class="mut" style="grid-column:1/-1">Nothing here yet.</p>';
+}
+$("#tagFilter").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; tagF = b.dataset.f; $$("#tagFilter button").forEach(x => x.classList.toggle("on", x === b)); renderGrid(); });
+function openSheet(n) {
+  $("#sheetBody").innerHTML = tagCard(n) + `<div class="card"><h3>Suggestions</h3><ul class="adv">${adviceHTML(advise(n), n)}</ul></div>
+    <div class="row"><button class="btn" data-act="find" data-n="${n}">Show on Home</button><button class="btn alt" data-act="close">Close</button></div>`;
+  $("#sheet").classList.add("on"); animBars($("#sheetBody"));
+}
+const closeSheet = () => $("#sheet").classList.remove("on");
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+
+/* ---------- global click router ---------- */
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-act]"); if (!b) return;
+  const a = b.dataset.act, n = +b.dataset.n || null;
+  if (b.tagName === "A") e.preventDefault();
+  vib();
+  if (a === "open") openSheet(n);
+  else if (a === "find") { closeSheet(); go("home"); findTag(n); }
+  else if (a === "watch") toggleWatch(n);
+  else if (a === "share") share(n);
+  else if (a === "dir") window.open(dirUrl(), "_blank", "noopener");
+  else if (a === "wa") window.open(wa(b.dataset.msg || "Hello AB Oil and Gas"), "_blank", "noopener");
+  else if (a === "locate") locate();
+  else if (a === "close") closeSheet();
+});
+
+/* ---------- tools ---------- */
+$("#toolSeg").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return; vib();
+  $$("#toolSeg button").forEach(x => x.classList.toggle("on", x === b));
+  $$(".panel").forEach(p => p.classList.toggle("on", p.dataset.p === b.dataset.t));
+});
+$$(".tilt").forEach(c => {
+  c.addEventListener("pointermove", e => {
+    if (e.pointerType === "touch") return;
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--ty", ((e.clientX - r.left) / r.width - .5) * 8 + "deg");
+    c.style.setProperty("--tx", (.5 - (e.clientY - r.top) / r.height) * 6 + "deg");
+  });
+  c.addEventListener("pointerleave", () => { c.style.setProperty("--tx", "0deg"); c.style.setProperty("--ty", "0deg"); });
+});
+
+/* keypad */
+const calc = { cur: "0", prev: null, op: null, fresh: false };
+const KEYS = [["C", "fn"], ["⌫", "fn"], ["%", "fn"], ["÷", "op"], ["7"], ["8"], ["9"], ["×", "op"], ["4"], ["5"], ["6"], ["-", "op"], ["1"], ["2"], ["3"], ["+", "op"], ["0"], ["."], ["=", "eq", 2]];
+$("#keys").innerHTML = KEYS.map(([k, c, s]) => `<button class="key ${c || ""}" data-k="${k}" ${s ? 'style="grid-column:span 2"' : ""}>${k}</button>`).join("");
+function run(a, op, b) {
+  const r = op === "+" ? a + b : op === "-" ? a - b : op === "×" ? a * b : b === 0 ? NaN : a / b;
+  return isNaN(r) ? "Error" : String(Math.round(r * 1e8) / 1e8);
+}
+function press(k) {
+  if (calc.cur === "Error" && k !== "C") calc.cur = "0";
+  if (/[0-9.]/.test(k)) {
+    if (calc.fresh) { calc.cur = "0"; calc.fresh = false; }
+    if (k === "." && calc.cur.includes(".")) return;
+    calc.cur = (calc.cur === "0" && k !== ".") ? k : calc.cur + k;
+  } else if (k === "C") { calc.cur = "0"; calc.prev = null; calc.op = null; calc.fresh = false; }
+  else if (k === "⌫") calc.cur = calc.cur.length > 1 ? calc.cur.slice(0, -1) : "0";
+  else if (k === "%") calc.cur = String(+calc.cur / 100);
+  else if (k === "=") { if (calc.op !== null) { calc.cur = run(+calc.prev, calc.op, +calc.cur); calc.op = null; calc.prev = null; calc.fresh = true; } }
+  else {
+    if (calc.op !== null && !calc.fresh) calc.cur = run(+calc.prev, calc.op, +calc.cur);
+    calc.prev = calc.cur; calc.op = k; calc.fresh = true;
+  }
+  $("#cOut").textContent = isNaN(+calc.cur) ? calc.cur : nf(+calc.cur).replace(/^-?0$/, calc.cur) === calc.cur ? calc.cur : (calc.cur.endsWith(".") || calc.cur.includes(".") && calc.cur.endsWith("0") ? calc.cur : nf(+calc.cur));
+  $("#cExpr").textContent = calc.op ? nf(+calc.prev) + " " + calc.op : "";
+  const v = +calc.cur;
+  $("#cSug").textContent = v > 0 && isFinite(v) ? `${naira(v)} buys about ${(v / S.petrol).toFixed(1)} litres of petrol at ${naira(S.petrol)} per litre. ${v >= 100 ? "Phone charging costs NGN 100." : ""}` : "Type an amount to see what it buys in petrol.";
+}
+$("#keys").addEventListener("click", e => { const b = e.target.closest(".key"); if (b) { vib(5); press(b.dataset.k); } });
+
+/* charging cost */
+function renderCart() {
+  const cart = S.prefs.cart;
+  $("#cartRows").innerHTML = DEVICES.map(d => `<div class="cart"><div><b>${d.label}</b><small>${naira(d.price)} each</small></div><div class="step"><button data-c="${d.id}" data-d="-1" aria-label="Less ${d.label}">-</button><b>${cart[d.id] || 0}</b><button data-c="${d.id}" data-d="1" aria-label="More ${d.label}">+</button></div></div>`).join("");
+  let total = 0, worst = null;
+  DEVICES.forEach(d => { const q = cart[d.id] || 0; total += q * d.price; if (q) { const m = Math.ceil(100 / (CONFIG.rates[d.id] || 1)); if (!worst || m > worst.m) worst = { m, d }; } });
+  $("#cartTotal").textContent = naira(total);
+  const sg = $("#cartSug");
+  if (!worst) { sg.className = "sug"; sg.textContent = "Add the devices you plan to drop off."; return; }
+  const ready = new Date(Date.now() + worst.m * 60000), o = openInfo();
+  const late = ready > o.closeD;
+  sg.className = "sug " + (late ? "warn" : "ok");
+  sg.textContent = `Longest job: ${worst.d.label.toLowerCase()}, about ${dur(worst.m)} from empty. ${late ? `That runs past closing at ${o.closeT}. Drop it earlier or plan to collect tomorrow.` : `Come back around ${clock(ready)} to collect everything.`}`;
+}
+$("#cartRows").addEventListener("click", e => {
+  const b = e.target.closest("button[data-c]"); if (!b) return; vib(5);
+  const id = b.dataset.c; S.prefs.cart[id] = clamp((S.prefs.cart[id] || 0) + +b.dataset.d, 0, 20); save(); renderCart();
+});
+
+/* fuel */
+$("#fChips").innerHTML = [1000, 2000, 5000, 10000, 20000].map(v => `<button class="chip" data-v="${v}">${nf(v)}</button>`).join("");
+function fuelOut(src) {
+  const price = S.petrol, kml = +$("#fKml").value || 0;
+  if (src === "ngn") $("#fLit").value = $("#fNgn").value ? (+$("#fNgn").value / price).toFixed(2) : "";
+  if (src === "lit") $("#fNgn").value = $("#fLit").value ? Math.round(+$("#fLit").value * price) : "";
+  const lit = +$("#fLit").value || 0;
+  S.prefs.kml = kml || 10; save();
+  $("#fOut").textContent = lit.toFixed(2) + " L";
+  $("#fSug").textContent = lit > 0 ? `That is about ${Math.round(lit * kml)} km at ${kml} km per litre. A full ${CONFIG.tankLitres} L tank costs ${naira(CONFIG.tankLitres * price)} at ${naira(price)} per litre.` : `Petrol is ${naira(price)} per litre today.`;
+}
+$("#fNgn").addEventListener("input", () => fuelOut("ngn"));
+$("#fLit").addEventListener("input", () => fuelOut("lit"));
+$("#fKml").addEventListener("input", () => fuelOut());
+$("#fChips").addEventListener("click", e => { const c = e.target.closest(".chip"); if (c) { vib(5); $("#fNgn").value = c.dataset.v; fuelOut("ngn"); } });
+
+/* POS scale */
+$("#pChips").innerHTML = [5000, 10000, 20000, 50000].map(v => `<button class="chip" data-v="${v}">${nf(v)}</button>`).join("");
+function posOut() {
+  const amt = +$("#pAmt").value || 0, tiers = CONFIG.posFees;
+  const idx = tiers.findIndex(t => amt <= t[0]);
+  $("#pScale").innerHTML = tiers.map((t, i) => `<i class="${amt > 0 && i <= idx ? "on" : ""}"></i>`).join("");
+  $("#pScaleL").innerHTML = tiers.map(t => `<span>${t[0] >= 1000 ? t[0] / 1000 + "k" : t[0]}</span>`).join("");
+  const sg = $("#pSug");
+  if (!amt) { $("#pOut").textContent = "NGN 0"; $("#pFee").textContent = "Enter an amount to see the fee on the scale. The fee scale is a sample until set by the station."; sg.className = "sug"; sg.textContent = `POS cash available: ${naira(S.posCash)}.`; return; }
+  if (idx < 0) { $("#pOut").textContent = naira(amt); $("#pFee").textContent = "Above the fee scale."; sg.className = "sug warn"; sg.textContent = "Large amounts are handled by the attendant. Message us before you come."; return; }
+  const fee = tiers[idx][1];
+  $("#pOut").textContent = naira(amt + fee);
+  $("#pFee").textContent = `You receive ${naira(amt)}. Fee ${naira(fee)}. Total debit ${naira(amt + fee)}.`;
+  const o = openInfo();
+  if (!o.open) { sg.className = "sug warn"; sg.textContent = `We are closed now. POS opens at ${o.openT}.`; }
+  else if (amt > S.posCash) { sg.className = "sug warn"; sg.textContent = `We only have ${naira(S.posCash)} in cash right now. Withdraw up to that, split over two visits, or message us first.`; }
+  else { sg.className = "sug ok"; sg.textContent = `We have enough cash for this. ${naira(S.posCash - amt)} would remain on the board.`; }
+}
+$("#pAmt").addEventListener("input", posOut);
+$("#pChips").addEventListener("click", e => { const c = e.target.closest(".chip"); if (c) { vib(5); $("#pAmt").value = c.dataset.v; posOut(); } });
+
+/* charge time */
+$("#tDev").innerHTML = DEVICES.map(d => `<option value="${d.id}">${d.label}</option>`).join("");
+function timeOut() {
+  let f = +$("#tFrom").value, t = +$("#tTo").value;
+  if (t <= f) { t = f + 1; $("#tTo").value = t; }
+  $("#tFromV").textContent = f + "%"; $("#tToV").textContent = t + "%";
+  const id = $("#tDev").value, rate = CONFIG.rates[id] || 1, m = Math.ceil((t - f) / rate);
+  $("#tOut").textContent = dur(m);
+  const steps = 10; $("#tScale").innerHTML = Array.from({ length: steps }, (_, i) => `<i class="${(i + 1) * 10 > f && i * 10 < t ? "on" : ""}"></i>`).join("");
+  const ready = new Date(Date.now() + m * 60000), o = openInfo(), sg = $("#tSug");
+  const price = (DEVICES.find(d => d.id === id) || {}).price;
+  const late = ready > o.closeD;
+  sg.className = "sug " + (late ? "warn" : "ok");
+  sg.textContent = `Drop it now and it reaches ${t}% around ${clock(ready)}. ${late ? `We close at ${o.closeT}, so plan to collect tomorrow or lower the target.` : `Charging costs ${naira(price)}.`}`;
+}
+["#tDev", "#tFrom", "#tTo"].forEach(s => $(s).addEventListener("input", timeOut));
+
+/* ---------- interactive charts ---------- */
+function chart(el, pts, fmt, color) {
+  const W = 360, H = 210, pl = 46, pr = 12, pt = 14, pb = 28, n = pts.length;
+  const vs = pts.map(p => p.v), min = Math.min(...vs), max = Math.max(...vs), pad = (max - min) * .18 || 1, lo = min - pad, hi = max + pad;
+  const x = i => pl + i * (W - pl - pr) / ((n - 1) || 1), y = v => pt + (1 - (v - lo) / (hi - lo)) * (H - pt - pb);
+  const line = pts.map((p, i) => (i ? "L" : "M") + x(i).toFixed(1) + "," + y(p.v).toFixed(1)).join("");
+  const area = line + `L${x(n - 1)},${H - pb}L${x(0)},${H - pb}Z`;
+  let grid = "";
+  for (let g = 0; g < 4; g++) { const v = lo + (hi - lo) * g / 3, yy = y(v); grid += `<line x1="${pl}" x2="${W - pr}" y1="${yy}" y2="${yy}" stroke="currentColor" stroke-opacity=".12"/><text x="${pl - 6}" y="${yy + 3}" font-size="9" text-anchor="end" fill="currentColor" fill-opacity=".6">${fmt(v, true)}</text>`; }
+  const every = Math.ceil(n / 6);
+  const xl = pts.map((p, i) => i % every === 0 || i === n - 1 ? `<text x="${x(i)}" y="${H - 8}" font-size="9" text-anchor="middle" fill="currentColor" fill-opacity=".6">${p.l}</text>` : "").join("");
+  const id = "g" + Math.random().toString(36).slice(2, 7);
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Interactive line chart"><defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${color}" stop-opacity=".45"/><stop offset="1" stop-color="${color}" stop-opacity="0"/></linearGradient></defs>
+    ${grid}${xl}<path d="${area}" fill="url(#${id})"/><path class="ln" pathLength="1" d="${line}" fill="none" stroke="${color}" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+    <line id="cl" y1="${pt}" y2="${H - pb}" stroke="${color}" stroke-dasharray="3 3"/><circle id="cd" r="5.5" fill="${color}" stroke="#fff" stroke-width="2"/></svg><div class="tip"></div>`;
+  const svg = $("svg", el), tip = $(".tip", el), cl = $("#cl", el), cd = $("#cd", el);
+  function pick(i) {
+    i = clamp(i, 0, n - 1);
+    cl.setAttribute("x1", x(i)); cl.setAttribute("x2", x(i)); cd.setAttribute("cx", x(i)); cd.setAttribute("cy", y(pts[i].v));
+    tip.innerHTML = `${pts[i].l}<b>${fmt(pts[i].v)}</b>`; tip.style.left = clamp(x(i) / W * 100, 14, 86) + "%";
+  }
+  const move = e => { const r = svg.getBoundingClientRect(); pick(Math.round(((e.clientX - r.left) / r.width * W - pl) / ((W - pl - pr) / ((n - 1) || 1)))); };
+  svg.addEventListener("pointerdown", move); svg.addEventListener("pointermove", move);
+  pick(n - 1);
+}
+let mk = { m: "petrol", r: 7 };
+const MFMT = { petrol: (v) => naira(v), pos: (v, ax) => ax ? Math.round(v / 1000) + "k" : naira(v), dev: (v, ax) => ax ? Math.round(v) : Math.round(v) + " devices" };
+const MCOL = { petrol: "#37D6FF", pos: "#4C6BFF", dev: "#2BD98A" };
+function renderMarket() {
+  const h = history(30).slice(-mk.r), pts = h.map(x => ({ l: x.l, v: x[mk.m] })), f = MFMT[mk.m];
+  chart($("#chart"), pts, f, MCOL[mk.m]);
+  const vs = pts.map(p => p.v), first = vs[0], last = vs[vs.length - 1], d = last - first, pc = first ? d / first * 100 : 0;
+  $("#mStats").innerHTML = `<div>Latest<b>${f(last)}</b></div><div>High<b>${f(Math.max(...vs))}</b></div><div>Low<b>${f(Math.min(...vs))}</b></div>`;
+  const sg = $("#mSug"), up = d > 0;
+  sg.className = "sug " + (mk.m === "petrol" ? (up ? "warn" : "ok") : "");
+  const tail = { petrol: up ? "Prices are climbing. Filling up sooner may save you money." : d < 0 ? "Prices are easing. No need to rush." : "Prices are holding steady.", pos: up ? "Cash on hand is growing, so big withdrawals are easier." : "Cash on hand is dipping. Check the board before a big withdrawal.", dev: up ? "More devices are coming in. Expect charging to take longer at peak hours." : "Fewer devices lately, so charging should be quick." }[mk.m];
+  sg.textContent = `${d === 0 ? "No change" : (up ? "Up " : "Down ") + Math.abs(pc).toFixed(1) + "%"} over ${mk.r} days. ${tail}`;
+  renderDonut(); renderBars();
+}
+$("#mMetric").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; mk.m = b.dataset.m; $$("#mMetric button").forEach(x => x.classList.toggle("on", x === b)); renderMarket(); });
+$("#mRange").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; mk.r = +b.dataset.r; $$("#mRange button").forEach(x => x.classList.toggle("on", x === b)); renderMarket(); });
+let dSel = 0;
+function renderDonut() {
+  const v = Object.values(S.tags);
+  const seg = [["Ready", v.filter(x => x >= 100).length, "#2BD98A"], ["Charging", v.filter(x => x >= 30 && x < 100).length, "#4C6BFF"], ["Low", v.filter(x => x < 30).length, "#FFB020"], ["Not written", 100 - v.length, "#7C88B8"]];
+  const C = 2 * Math.PI * 42; let acc = 0;
+  const rings = seg.map((s, i) => { const len = s[1] / 100 * C, el = `<circle cx="70" cy="70" r="42" fill="none" stroke="${s[2]}" stroke-width="${i === dSel ? 22 : 16}" stroke-dasharray="${len} ${C - len}" stroke-dashoffset="${-acc}" transform="rotate(-90 70 70)"/>`; acc += len; return el; }).join("");
+  $("#donut").innerHTML = `<svg viewBox="0 0 140 140" role="img" aria-label="Tag status">${rings}<text x="70" y="68" text-anchor="middle" font-size="24" font-weight="800" font-family="Sora,sans-serif" fill="currentColor">${seg[dSel][1]}</text><text x="70" y="86" text-anchor="middle" font-size="10" fill="currentColor" fill-opacity=".65">${seg[dSel][0]}</text></svg>
+    <div class="leg">${seg.map((s, i) => `<button class="${i === dSel ? "on" : ""}" data-i="${i}"><i style="background:${s[2]}"></i>${s[0]}<b>${s[1]}</b></button>`).join("")}</div>`;
+}
+$("#donut").addEventListener("click", e => { const b = e.target.closest("button[data-i]"); if (b) { vib(5); dSel = +b.dataset.i; renderDonut(); } });
+function renderBars() {
+  const cnt = {}; DEVICES.forEach(d => cnt[d.id] = 0);
+  Object.keys(S.tags).forEach(n => { const t = S.types[n] || "phone"; cnt[t] = (cnt[t] || 0) + 1; });
+  const mx = Math.max(1, ...Object.values(cnt));
+  $("#bars").innerHTML = DEVICES.map(d => `<div class="bar"><span>${d.label}</span><div><i style="width:${cnt[d.id] / mx * 100}%"></i></div><b>${cnt[d.id]}</b></div>`).join("");
+}
+
+/* ---------- attendant panel ---------- */
+let unlocked = false;
+function showAdmin() {
+  $("#lock").hidden = unlocked; $("#admin").hidden = !unlocked;
+  if (!unlocked) return;
+  $("#aPos").value = S.posCash; $("#aPet").value = S.petrol; $("#aOpen").value = S.hours.open; $("#aClose").value = S.hours.close;
+  $("#aT").innerHTML = DEVICES.map(d => `<option value="${d.id}">${d.label}</option>`).join("");
+}
+$("#unlock").addEventListener("click", () => {
+  if ($("#pin").value === S.pin) { unlocked = true; $("#pin").value = ""; showAdmin(); toast("Panel unlocked"); } else toast("Wrong PIN");
+});
+$("#aLock").addEventListener("click", () => { unlocked = false; showAdmin(); });
+const syncP = v => { v = clamp(Math.round(+v || 0), 0, 100); $("#aP").value = v; $("#aPn").value = v; $("#aPv").textContent = v + "%"; };
+$("#aP").addEventListener("input", e => syncP(e.target.value));
+$("#aPn").addEventListener("input", e => syncP(e.target.value));
+$("#aN").addEventListener("input", () => { const n = +$("#aN").value; if (S.tags[n] !== undefined) { syncP(S.tags[n]); $("#aT").value = S.types[n] || "phone"; } });
+const needTag = () => { const n = Math.round(+$("#aN").value); if (!(n >= 1 && n <= 100)) { toast("Enter a tag from 1 to 100"); return null; } return n; };
+$("#aSave").addEventListener("click", () => { const n = needTag(); if (n && setTag(n, $("#aP").value, $("#aT").value)) toast(`Tag ${n} saved at ${S.tags[n]}%`); });
+$("#aMinus").addEventListener("click", () => { const n = needTag(); if (n) { syncP((S.tags[n] ?? +$("#aP").value) - 10); setTag(n, $("#aP").value, $("#aT").value); toast(`Tag ${n} now ${S.tags[n]}%`); } });
+$("#aPlus").addEventListener("click", () => { const n = needTag(); if (n) { syncP((S.tags[n] ?? +$("#aP").value) + 10); setTag(n, $("#aP").value, $("#aT").value); toast(`Tag ${n} now ${S.tags[n]}%`); } });
+$("#aFull").addEventListener("click", () => { const n = needTag(); if (n) { syncP(100); setTag(n, 100, $("#aT").value); toast(`Tag ${n} is full`); } });
+$("#aDel").addEventListener("click", () => { const n = needTag(); if (n) { clearTag(n); syncP(0); toast(`Tag ${n} cleared`); } });
+$("#aBulkGo").addEventListener("click", () => {
+  let ok = 0;
+  $("#aBulk").value.split(/[\s,;]+/).forEach(p => { const m = p.match(/^(\d+)[=:](\d+)$/); if (m && setTag(m[1], m[2])) ok++; });
+  toast(ok ? `${ok} tag${ok > 1 ? "s" : ""} updated` : "Use the format 12=100, 45=35");
+});
+$("#aSaveSt").addEventListener("click", () => {
+  S.posCash = Math.max(0, +$("#aPos").value || 0); S.petrol = Math.max(0, +$("#aPet").value || 0);
+  if ($("#aOpen").value) S.hours.open = $("#aOpen").value; if ($("#aClose").value) S.hours.close = $("#aClose").value;
+  touch(); toast("Board saved");
+});
+$("#aLog").addEventListener("click", () => {
+  S.posCash = Math.max(0, +$("#aPos").value || 0); S.petrol = Math.max(0, +$("#aPet").value || 0);
+  S.logs[dayKey(new Date())] = { petrol: S.petrol, pos: S.posCash, devices: Math.max(0, +$("#aDev").value || 0) };
+  touch(); toast("Today logged for the charts");
+});
+const snap = () => ({ tags: S.tags, types: S.types, posCash: S.posCash, petrol: S.petrol, updated: S.updated });
+$("#aExport").addEventListener("click", () => {
+  const t = JSON.stringify(snap(), null, 1); $("#aJson").value = t;
+  if (navigator.clipboard) navigator.clipboard.writeText(t).then(() => toast("Copied. Paste it into DEFAULTS to publish for everyone."));
+});
+function applyData(d) {
+  if (d.tags) S.tags = d.tags; if (d.types) S.types = d.types;
+  if (d.posCash != null) S.posCash = +d.posCash; if (d.petrol != null) S.petrol = +d.petrol;
+}
+$("#aImport").addEventListener("click", () => { try { applyData(JSON.parse($("#aJson").value)); touch(); toast("Imported"); } catch (e) { toast("That JSON is not valid"); } });
+$("#aPublish").addEventListener("click", async () => {
+  if (!CONFIG.api) return toast("No server set yet. Use Export and paste into DEFAULTS, or set CONFIG.api.");
+  try {
+    const r = await fetch(CONFIG.api, { method: "POST", headers: { "content-type": "application/json", "x-admin-pin": S.pin }, body: JSON.stringify(snap()) });
+    toast(r.ok ? "Published to all phones" : "Server refused the update");
+  } catch (e) { toast("Could not reach the server"); }
+});
+$("#aReset").addEventListener("click", () => { if (confirm("Reset tags and board to the defaults in the file?")) { S = fresh(S); S.prefs.watch = []; save(); refreshAll(); toast("Reset done"); } });
+$("#aPinGo").addEventListener("click", () => { const p = $("#aNewPin").value; if (p.length < 4) return toast("Use at least 4 digits"); S.pin = p; save(); $("#aNewPin").value = ""; toast("PIN changed"); });
+function applyTheme() { document.documentElement.dataset.theme = S.prefs.theme; $('meta[name=theme-color]').content = S.prefs.theme === "dark" ? "#060A1C" : "#EEF2FF"; }
+$("#themeBtn").addEventListener("click", () => { S.prefs.theme = S.prefs.theme === "dark" ? "light" : "dark"; save(); applyTheme(); });
+$("#clearBtn").addEventListener("click", () => { if (confirm("Clear everything saved on this phone?")) { try { localStorage.removeItem(KEY); } catch (e) {} location.href = location.pathname; } });
+
+/* ---------- remote sync (optional) ---------- */
+async function pull() {
+  if (!CONFIG.api) return;
+  try {
+    const r = await fetch(CONFIG.api, { cache: "no-store" }); if (!r.ok) return;
+    const d = await r.json(); if (!d || !d.tags) return;
+    applyData(d); if (d.updated) S.updated = d.updated; save(); refreshAll(); checkWatch();
+  } catch (e) {}
+}
+
+/* ---------- render everything ---------- */
+function renderHeader() {
+  const o = openInfo(); $("#openPill").classList.toggle("open", o.open);
+  $("#openTxt").textContent = o.open ? "Open now" : "Closed";
+  $("#openPill").title = o.open ? "Closes at " + o.closeT : "Opens at " + o.openT;
+  const u = new Date(S.updated).toLocaleString("en-NG", { dateStyle: "medium", timeStyle: "short" });
+  $("#updTags").textContent = u; $("#updMore").textContent = u;
+}
+function refreshAll() {
+  renderHeader(); renderOverview(); renderDir(); renderGrid(); renderRecent(); refreshAdvice(); renderCart(); fuelOut(); posOut(); timeOut();
+  if (curTag != null) { $("#tagOut").innerHTML = tagCard(curTag); animBars($("#tagOut")); }
+  setDevice(curDev);
+  if (S.prefs.tab === "market") renderMarket();
+  if ($("#sheet").classList.contains("on") && $("#sheetBody").dataset.n) openSheet(+$("#sheetBody").dataset.n);
+}
+
+/* ---------- init ---------- */
+applyTheme();
+$("#fKml").value = S.prefs.kml || 10;
+setDevice("phone"); applyRot();
+refreshAll();
+go(S.prefs.tab || "home");
+checkWatch();
+const q = new URLSearchParams(location.search).get("tag");
+if (q) { go("home"); findTag(q); }
+pull(); if (CONFIG.api) setInterval(pull, 60000);
+setInterval(renderHeader, 60000);
+
+window.AB = { get state() { return S; }, setTag, clearTag, setTags: o => Object.entries(o).forEach(([n, p]) => setTag(n, p)), DEFAULTS, CONFIG };
+})();
+</script>
+</body>
+</html>
