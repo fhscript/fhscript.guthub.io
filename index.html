@@ -657,15 +657,21 @@ function advise(n) {
   const L = [], now = new Date(), o = openInfo(now), km = distKm();
   const travel = km == null ? null : Math.max(1, Math.round(km / 25 * 60));
   if (n) {
-    const v = S.tags[n], type = S.types[n] || "phone", rate = CONFIG.rates[type] || 1;
-    if (v === undefined) L.push(["msg", `Tag ${n} has no percentage yet. We write them in from time to time.`, "wa", n]);
+    let v = S.tags[n], type = S.types[n] || "phone", isGuess = false;
+    if (v === undefined && tempEstimate && tempEstimate.n === n) {
+      v = tempEstimate.p; type = tempEstimate.type || type; isGuess = true;
+    }
+    const rate = CONFIG.rates[type] || 1;
+    if (v === undefined) L.push(["msg", `Tag ${n} has no percentage yet. Use the guess form above or ask us to check.`, "wa", n]);
     else if (v >= 100) {
-      L.push(["ok", `Tag ${n} is fully charged. Bring the original tag to collect it.`]);
+      L.push([isGuess ? "go" : "ok", isGuess
+        ? `Estimated full for tag ${n}. This is a guess — bring the original tag and confirm with the attendant.`
+        : `Tag ${n} is fully charged. Bring the original tag to collect it.`]);
       if (!o.open) L.push(["warn", `We are closed now. Collect from ${o.openT}.`]);
       else if (travel != null) L.push(["go", `You are about ${travel} min away by bike. We close at ${o.closeT}.`, "dir"]);
     } else {
       const mins = Math.ceil((100 - v) / rate), ready = new Date(now.getTime() + mins * 60000);
-      L.push(["go", `Tag ${n} (${devLabel(type).toLowerCase()}) is at ${v}%. About ${dur(mins)} to full, around ${clock(ready)}.`]);
+      L.push(["go", `${isGuess ? "Estimated: " : ""}Tag ${n} (${devLabel(type).toLowerCase()}) is at ${v}%. About ${dur(mins)} to full, around ${clock(ready)}.${isGuess ? " (guess, not stored)" : ""}`]);
       if (ready > o.closeD) L.push(["warn", `It will not reach 100% before we close at ${o.closeT}. Collect tomorrow, or come earlier and take it part charged.`]);
       else if (travel != null) {
         const leave = new Date(ready.getTime() - travel * 60000);
@@ -739,8 +745,12 @@ BUILD.spicer = v => [
 ];
 const STAGE = [["phone", "Phone"], ["laptop", "Laptop"], ["powerbank", "Power bank"], ["solar", "Solar"], ["spicer", "Spicer"], ["pump", "Fuel pump"]];
 let curDev = "phone", rot = { x: -14, y: -28 }, drag = null, idle = 0;
+let tempEstimate = null; // { n, p, type, mins } — temporary guess, never stored in S.tags
 const rig = $("#rig"), stage = $("#stage");
-function stageVal() { return curTag != null ? S.tags[curTag] : undefined; }
+function stageVal() {
+  if (tempEstimate && curTag != null && tempEstimate.n === curTag) return tempEstimate.p;
+  return curTag != null ? S.tags[curTag] : undefined;
+}
 function setDevice(id) {
   curDev = id; rig.innerHTML = ""; BUILD[id](stageVal()).forEach(e => rig.appendChild(e));
   $$("#devChips .chip").forEach(c => c.classList.toggle("on", c.dataset.d === id));
@@ -762,14 +772,44 @@ stage.addEventListener("pointermove", e => {
 
 /* ---------- tag finder ---------- */
 function tagCard(n) {
-  const v = S.tags[n], watching = S.prefs.watch.includes(n);
-  if (v === undefined) return `<div class="miss"><p>No percentage for tag ${n} yet. We write them in from time to time.</p><div class="row"><button class="btn sm" data-act="wa" data-msg="Hello, please check tag ${n}">Ask about tag ${n}</button></div></div>`;
+  const watching = S.prefs.watch.includes(n);
+  let v = S.tags[n];
+  let isGuess = false;
+  let type = S.types[n] || "phone";
+  if (v === undefined && tempEstimate && tempEstimate.n === n) {
+    v = tempEstimate.p;
+    type = tempEstimate.type || type;
+    isGuess = true;
+  }
+  if (v === undefined) {
+    const knownType = S.types[n] || "";
+    const opts = DEVICES.map(d => `<option value="${d.id}" ${d.id === (knownType || "phone") ? "selected" : ""}>${d.label}</option>`).join("");
+    return `<div class="miss">
+      <p>No percentage written yet for tag ${n}. We update them from time to time.</p>
+      <p style="margin-top:10px"><b>I can guess your percentage.</b> Which time did you plug it in?</p>
+      <label for="gTime">Plug-in time</label>
+      <input id="gTime" type="time" value="">
+      <label for="gDev">Device type</label>
+      <select id="gDev">${opts}</select>
+      <div class="row" style="margin-top:12px">
+        <button class="btn sm" data-act="guess" data-n="${n}">Guess percentage</button>
+        <button class="btn sm alt" data-act="wa" data-msg="Hello, please check tag ${n}">Ask attendant</button>
+      </div>
+      <p class="mut" style="font-size:.78rem;margin-top:8px">Guess uses typical charge rates and is not stored. Official % still come from the station.</p>
+    </div>`;
+  }
   const cls = v < 30 ? "low" : v < 70 ? "mid" : "";
-  const rate = CONFIG.rates[S.types[n] || "phone"] || 1;
-  const meta = v >= 100 ? "Fully charged. Ready for collection with your tag." : `${devLabel(S.types[n] || "phone")} charging. About ${dur(Math.ceil((100 - v) / rate))} to full.`;
-  return `<div class="tag"><div class="engrave">ABA'S INI<br>TAG ${n}</div><div class="big">${v}<small>%</small></div>
+  const rate = CONFIG.rates[type] || 1;
+  const meta = isGuess
+    ? `Estimated from plug-in time (~${tempEstimate.mins} min). ${devLabel(type)} · About ${dur(Math.ceil((100 - v) / rate))} to full. Not official.`
+    : (v >= 100 ? "Fully charged. Ready for collection with your tag." : `${devLabel(type)} charging. About ${dur(Math.ceil((100 - v) / rate))} to full.`);
+  return `<div class="tag"><div class="engrave">ABA'S INI<br>TAG ${n}${isGuess ? " · EST" : ""}</div><div class="big">${v}<small>%</small></div>
     <div class="batt"><i class="${cls}" data-w="${v}"></i></div><p class="meta">${meta}</p>
-    <div class="row"><button class="btn sm amber" data-act="watch" data-n="${n}">${watching ? "Stop watching" : "Watch this tag"}</button><button class="btn sm alt" data-act="share" data-n="${n}">Share link</button></div></div>`;
+    <div class="row">
+      ${isGuess ? `<button class="btn sm alt" data-act="clearguess" data-n="${n}">Clear guess</button>` : ""}
+      <button class="btn sm amber" data-act="watch" data-n="${n}">${watching ? "Stop watching" : "Watch this tag"}</button>
+      <button class="btn sm alt" data-act="share" data-n="${n}">Share link</button>
+    </div></div>`;
 }
 function animBars(root) { requestAnimationFrame(() => requestAnimationFrame(() => $$("[data-w]", root).forEach(i => i.style.width = i.dataset.w + "%"))); }
 function findTag(n) {
@@ -777,10 +817,14 @@ function findTag(n) {
   const out = $("#tagOut");
   if (!(n >= 1 && n <= 100)) { out.innerHTML = '<div class="miss"><p>Tags run from 1 to 100. Check the number on your tag and try again.</p></div>'; return; }
   curTag = n;
+  // clear previous guess if looking up a different tag
+  if (tempEstimate && tempEstimate.n !== n) tempEstimate = null;
   S.prefs.recent = [n, ...S.prefs.recent.filter(x => x !== n)].slice(0, 6); save();
   $("#tagInput").value = n;
   out.innerHTML = tagCard(n); animBars(out);
-  if (S.tags[n] !== undefined) setDevice(S.types[n] === "pump" ? "phone" : (S.types[n] || "phone")); else setDevice(curDev);
+  if (S.tags[n] !== undefined) setDevice(S.types[n] === "pump" ? "phone" : (S.types[n] || "phone"));
+  else if (tempEstimate && tempEstimate.n === n) setDevice(tempEstimate.type || curDev);
+  else setDevice(curDev);
   renderRecent(); refreshAdvice();
   try { history.replaceState(null, "", "?tag=" + n); } catch (e) {}
 }
@@ -879,7 +923,39 @@ document.addEventListener("click", e => {
   else if (a === "wa") window.open(wa(b.dataset.msg || "Hello AB Oil and Gas"), "_blank", "noopener");
   else if (a === "locate") locate();
   else if (a === "close") closeSheet();
+  else if (a === "guess") doGuess(n);
+  else if (a === "clearguess") { tempEstimate = null; findTag(n); toast("Guess cleared"); }
 });
+
+/* ---------- percentage guess (never stored) ---------- */
+function doGuess(n) {
+  const timeEl = $("#gTime"), devEl = $("#gDev");
+  if (!timeEl || !devEl) return;
+  const timeStr = timeEl.value;
+  if (!timeStr) { toast("Pick the time you plugged it in"); return; }
+  const type = devEl.value || "phone";
+  const rate = CONFIG.rates[type] || 1;
+  const now = new Date();
+  const [hh, mm] = timeStr.split(":").map(Number);
+  let plugged = new Date(now);
+  plugged.setHours(hh, mm, 0, 0);
+  // if the chosen time is still in the future today, treat it as yesterday
+  if (plugged > now) plugged.setDate(plugged.getDate() - 1);
+  let mins = Math.max(0, Math.round((now - plugged) / 60000));
+  // cap at a reasonable day of charging
+  if (mins > 24 * 60) mins = 24 * 60;
+  const p = clamp(Math.round(mins * rate), 0, 100);
+  tempEstimate = { n, p, type, mins };
+  // refresh the card and 3D stage with the estimate (still not written to S.tags)
+  const out = $("#tagOut");
+  if (out) { out.innerHTML = tagCard(n); animBars(out); }
+  setDevice(type);
+  refreshAdvice();
+  if ($("#sheet").classList.contains("on")) openSheet(n);
+  toast(p >= 100
+    ? `Guess: fully charged after ~${dur(mins)}`
+    : `Guess: about ${p}% after ~${dur(mins)}`);
+}
 
 /* ---------- tools ---------- */
 $("#toolSeg").addEventListener("click", e => {
