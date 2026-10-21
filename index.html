@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -526,7 +527,7 @@ const DEVICES = [
 ];
 /* tags: { tagNumber: percent }  types: { tagNumber: deviceId } */
 const DEFAULTS = {
-  tags: { 49: 13, 74: 100, 45: 35, 7: 18, 1: 100, 88: 100, 40: 23, 62: 98, 44: 0, 72: 29, 31: 27, 30: 100, 81: 83, 37: 100, 89: 39},
+  tags: { 49: 13, 74: 100, 45: 35, 7: 18, 1: 100, 88: 100, 40: 23, 62: 98, 44: 0, 72: 29, 31: 27, 30: 100, 81: 83, 37: 100, 89: 41},
   types: { 89: "phone", 12: "laptop", 45: "powerbank", 7: "phone", 23: "phone" },
   posCash: 250000,
   petrol: 1400,
@@ -547,19 +548,30 @@ const devLabel = id => (DEVICES.find(d => d.id === id) || DEVICES[0]).label;
 const KEY = "ab_state_v1";
 function fresh(old) {
   const prefs = Object.assign({ theme: "dark", recent: [], watch: [], seen: {}, tab: "home", pos: null, cart: {}, kml: 10 }, (old && old.prefs) || {});
-  return { v: CONFIG.dataVersion, tags: { ...DEFAULTS.tags }, types: { ...DEFAULTS.types }, posCash: DEFAULTS.posCash,
-    petrol: DEFAULTS.petrol, updated: DEFAULTS.updated, logs: {}, hours: { ...CONFIG.hours }, pin: CONFIG.pin, prefs };
+  return { v: CONFIG.dataVersion, local: false, tags: { ...DEFAULTS.tags }, types: { ...DEFAULTS.types }, posCash: DEFAULTS.posCash,
+    petrol: DEFAULTS.petrol, updated: DEFAULTS.updated, logs: {}, hours: { ...CONFIG.hours }, pin: (old && old.pin) || CONFIG.pin, prefs };
 }
 function load() {
   let s = null;
   try { s = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
-  if (!s || s.v !== CONFIG.dataVersion) return fresh(s);
   const base = fresh(s);
-  return Object.assign(base, s, { prefs: Object.assign(base.prefs, s.prefs || {}) });
+  if (!s) return base;
+  // keep a stored copy only if an attendant edited it on this phone AND it is newer than the file
+  if (s.local && new Date(s.updated) > new Date(DEFAULTS.updated)) {
+    Object.assign(base, { local: true, tags: s.tags || base.tags, types: s.types || base.types, posCash: s.posCash, petrol: s.petrol,
+      updated: s.updated, hours: s.hours || base.hours, logs: s.logs || {} });
+  }
+  return base;
 }
+const save = () => {
+  try {
+    const out = { v: S.v, local: S.local, pin: S.pin, prefs: S.prefs };
+    if (S.local) Object.assign(out, { tags: S.tags, types: S.types, posCash: S.posCash, petrol: S.petrol, updated: S.updated, hours: S.hours, logs: S.logs });
+    localStorage.setItem(KEY, JSON.stringify(out));
+  } catch (e) {}
+};
 let S = load();
-const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
-function touch() { S.updated = new Date().toISOString(); save(); refreshAll(); }
+function touch() { S.local = true; S.updated = new Date().toISOString(); save(); refreshAll(); }
 
 /* ---------- tag data API (also on window.AB for console edits) ---------- */
 function setTag(n, p, type) {
