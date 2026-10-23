@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#060A1C">
+<title>About | Abasieyene Oil and Gas</title>
+<meta name="description" content="Abasieyene Oil and Gas (Abasieyene Ini Investment Limited) — commercial petrol filling station and petroleum products distributor in Etinan, Akwa Ibom State, Nigeria.">
+<link rel="icon" href="/ab-og.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ab.devtem.org/about">
+<meta property="og:site_name" content="AB by Figsh">
+<meta property="og:title" content="About Abasieyene Oil and Gas">
+<meta property="og:description" content="Leading petroleum products distributor in Etinan, Akwa Ibom. PMS, diesel, POS and device charging.">
+<meta property="og:image" content="https://ab.devtem.org/ab-og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --font:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --disp:"Sora","Inter",system-ui,sans-serif;
+  --bg:#060A1C; --bg2:#0C1333; --card:rgba(255,255,255,.06); --card2:rgba(255,255,255,.10);
+  --line:rgba(255,255,255,.12); --text:#EAF0FF; --mut:#93A0C8;
+  --blue:#4C6BFF; --blue2:#2B3FC4; --cyan:#37D6FF; --ok:#2BD98A; --warn:#FFB020;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.55;font-size:15px;min-height:100vh}
+.bg{position:fixed;inset:0;z-index:-1;background:
+  radial-gradient(700px 420px at 85% -5%,rgba(76,107,255,.32),transparent 60%),
+  radial-gradient(500px 380px at -10% 40%,rgba(55,214,255,.12),transparent 60%),var(--bg)}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px}
+
+/* header */
+.top{position:sticky;top:0;z-index:30;backdrop-filter:blur(16px) saturate(150%);background:color-mix(in srgb,var(--bg) 75%,transparent);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;min-width:0}
+.logo{width:38px;height:38px;border-radius:11px;background:linear-gradient(150deg,var(--blue),var(--blue2));display:grid;place-items:center;font-family:var(--disp);font-weight:800;color:#fff;box-shadow:0 6px 16px rgba(76,107,255,.4);flex:none}
+.brand b{display:block;font-family:var(--disp);font-size:1rem}
+.brand small{display:block;color:var(--mut);font-size:.72rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav a{color:var(--mut);text-decoration:none;font-weight:600;font-size:.88rem;padding:8px 12px;border-radius:10px}
+.nav a:hover,.nav a.on{color:#fff;background:var(--card)}
+
+main{padding:28px 0 80px}
+h1{font-family:var(--disp);font-size:clamp(1.8rem,6vw,2.6rem);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:10px}
+h2{font-family:var(--disp);font-size:1.35rem;font-weight:700;margin:0 0 14px}
+h3{font-family:var(--disp);font-size:1.05rem;font-weight:700}
+.lead{color:var(--mut);font-size:1.05rem;max-width:48ch;margin-bottom:28px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px}
+.stack>*+*{margin-top:18px}
+.mut{color:var(--mut)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:14px;padding:12px 18px;font-weight:600;font-size:.95rem;background:linear-gradient(150deg,var(--blue),var(--blue2));color:#fff;text-decoration:none;box-shadow:0 8px 18px rgba(76,107,255,.3)}
+.btn.alt{background:var(--card2);color:var(--text);box-shadow:none;border:1px solid var(--line)}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+/* business */
+.biz{display:grid;gap:12px}
+.biz-item{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.biz-item .icon{width:42px;height:42px;border-radius:12px;background:linear-gradient(150deg,rgba(76,107,255,.35),rgba(55,214,255,.15));display:grid;place-items:center;flex:none;font-size:1.2rem}
+.biz-item p{font-size:.9rem;color:var(--mut);margin-top:4px}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.member{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.member:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.25)}
+.member img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:var(--bg2)}
+.member .body{padding:14px}
+.member strong{display:block;font-family:var(--disp);font-size:.95rem;margin-bottom:2px}
+.member .role{font-size:.78rem;color:var(--cyan);font-weight:600;margin-bottom:6px}
+.stars{color:var(--warn);font-size:.75rem;letter-spacing:1px;margin-bottom:6px}
+.member p{font-size:.8rem;color:var(--mut);line-height:1.4}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:28px 0 40px;text-align:center;color:var(--mut);font-size:.86rem}
+footer a{color:var(--text);font-weight:600;text-decoration:none}
+footer .links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 16px;margin:12px 0 18px}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <div class="logo">AB</div>
+      <div>
+        <b>AB Oil and Gas</b>
+        <small>Abasieyene Ini Investment Limited</small>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/about" class="on">About</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap stack">
+
+  <div>
+    <h1>About us</h1>
+    <p class="lead">Abasieyene Oil and Gas is a leading petroleum products distributor based in Etinan, Akwa Ibom State, Nigeria.</p>
+  </div>
+
+  <section class="card">
+    <h2>Who we are</h2>
+    <p>Abasieyene Oil and Gas (operated by <strong>Abasieyene Ini Investment Limited</strong>) runs a commercial petrol filling station in Etinan. We distribute refined petroleum products and provide everyday services that keep our community moving.</p>
+    <p class="mut" style="margin-top:12px">With years of hands-on experience in the oil and gas sector, we focus on reliable supply, fair pricing and practical services for drivers, businesses and households.</p>
+  </section>
+
+  <section>
+    <h2>Core business</h2>
+    <div class="biz">
+      <div class="biz-item">
+        <div class="icon">⛽</div>
+        <div>
+          <h3>Petroleum products</h3>
+          <p>Premium Motor Spirit (PMS / petrol) and Automated Gas Oil (diesel) for cars, bikes, generators and commercial vehicles.</p>
+        </div>
+      </div>
+      <div class="biz-item">
+        <div class="icon">💳</div>
+        <div>
+          <h3>POS services</h3>
+          <p>Cash withdrawals and transfers at the station for customers who need convenient banking access.</p>
+        </div>
+      </div>
+      <div class="biz-item">
+        <div class="icon">🔌</div>
+        <div>
+          <h3>Device charging</h3>
+          <p>Secure charging for phones, power banks, laptops and more — drop off, get a tag, collect when ready.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Our team</h2>
+    <div class="team">
+      <article class="member">
+        <img src="https://i.postimg.cc/nr2hdyNB/1763201379279.jpg" alt="Abasieyene Ini-Obong — Founder" loading="lazy">
+        <div class="body">
+          <strong>Abasieyene Ini-Obong</strong>
+          <div class="role">Founder</div>
+          <div class="stars">★★★★★</div>
+          <p>Visionary leader with over 15 years in the oil and gas industry.</p>
+        </div>
+      </article>
+
+      <article class="member">
+        <img src="https://i.postimg.cc/vHrmX9M0/1763228180317.jpg" alt="Ini-Obong — Director" loading="lazy">
+        <div class="body">
+          <strong>Ini-Obong</strong>
+          <div class="role">Director</div>
+          <div class="stars">★★★★★</div>
+          <p>Strategic planner with expertise in business development and operations.</p>
+        </div>
+      </article>
+
+      <article class="member">
+        <img src="https://i.postimg.cc/fLTdMvZR/1763201359841.jpg" alt="Udeme — Manager" loading="lazy">
+        <div class="body">
+          <strong>Udeme</strong>
+          <div class="role">Manager</div>
+          <div class="stars">★★★★★</div>
+          <p>Operations expert ensuring seamless day-to-day business activities.</p>
+        </div>
+      </article>
+
+      <article class="member">
+        <img src="https://i.postimg.cc/sXrrWnxq/1763201348426.jpg" alt="Joy Ofonime — Sales Manager" loading="lazy">
+        <div class="body">
+          <strong>Joy Ofonime</strong>
+          <div class="role">Sales Manager</div>
+          <div class="stars">★★★★★</div>
+          <p>Driving revenue growth through strategic sales initiatives.</p>
+        </div>
+      </article>
+
+      <article class="member">
+        <img src="/assets/images/f.png" alt="Figsh (Ekuyik) — Developer" loading="lazy" onerror="this.src='https://via.placeholder.com/300x300/0C1333/4C6BFF?text=Figsh'">
+        <div class="body">
+          <strong>Figsh (Ekuyik)</strong>
+          <div class="role">Developer</div>
+          <div class="stars">★★★★★</div>
+          <p>Technology expert creating innovative solutions for business optimization.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Visit us</h2>
+    <p>Etinan, Akwa Ibom State, Nigeria</p>
+    <p class="mut" style="margin-top:6px">Open daily · Petrol · POS · Device charging</p>
+    <div class="row">
+      <a class="btn" href="https://wa.me/2348168906132?text=Hello%20AB%20Oil%20and%20Gas">WhatsApp us</a>
+      <a class="btn alt" href="/">Back to station app</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="/">Station app</a>
+      <a href="/about">About</a>
+      <a href="https://wa.me/2348168906132">WhatsApp</a>
+      <a href="https://figsh.devtem.org">Figsh</a>
+    </div>
+    <p>Abasieyene Ini Investment Limited</p>
+    <p style="margin-top:4px">Developed by <a href="https://figsh.devtem.org">Figsh</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
