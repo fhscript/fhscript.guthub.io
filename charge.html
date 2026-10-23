@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#060A1C">
+<title>Charge your phone online | AB Oil and Gas – Etinan</title>
+<meta name="description" content="Can you charge your phone online? Fun demo from Abasieyene Oil and Gas, Etinan — with a real lesson about scams.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://ab.devtem.org/charge">
+<link rel="icon" href="/ab-og.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ab.devtem.org/charge">
+<meta property="og:title" content="Charge your phone online?">
+<meta property="og:description" content="We read your battery and browser… then ask if you believe online charging is real.">
+<meta property="og:image" content="https://ab.devtem.org/ab-og.jpg">
+<meta property="og:locale" content="en_NG">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --font:"Inter",system-ui,sans-serif;
+  --disp:"Sora","Inter",system-ui,sans-serif;
+  --bg:#060A1C; --bg2:#0C1333; --card:rgba(255,255,255,.07); --card2:rgba(255,255,255,.11);
+  --line:rgba(255,255,255,.12); --text:#EAF0FF; --mut:#93A0C8;
+  --blue:#4C6BFF; --blue2:#2B3FC4; --cyan:#37D6FF; --ok:#2BD98A; --warn:#FFB020; --bad:#FF5C6C;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.5;font-size:15px;min-height:100vh}
+.bg{position:fixed;inset:0;z-index:-1;background:
+  radial-gradient(600px 400px at 80% -5%,rgba(76,107,255,.32),transparent 55%),
+  radial-gradient(480px 320px at 10% 80%,rgba(43,217,138,.12),transparent 50%),var(--bg)}
+.wrap{max-width:440px;margin:0 auto;padding:20px 16px 48px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(150deg,var(--blue),var(--blue2));display:grid;place-items:center;font-family:var(--disp);font-weight:800;color:#fff;font-size:.9rem}
+.brand b{font-family:var(--disp);font-size:.95rem;display:block}
+.brand small{color:var(--mut);font-size:.7rem}
+.top a.nav{color:var(--mut);font-weight:600;font-size:.82rem;text-decoration:none}
+
+h1{font-family:var(--disp);font-size:clamp(1.5rem,6vw,1.9rem);font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.lead{color:var(--mut);font-size:.95rem;margin-bottom:20px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:14px}
+.card h2{font-family:var(--disp);font-size:1.05rem;margin-bottom:12px}
+
+/* battery visual */
+.phone{width:120px;height:220px;margin:8px auto 16px;border:3px solid #4a5a9a;border-radius:18px;position:relative;background:#0a0f28;box-shadow:0 12px 28px rgba(0,0,0,.35)}
+.phone::before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:40px;height:6px;border-radius:4px;background:#2a3560}
+.phone .screen{position:absolute;inset:22px 10px 16px;border-radius:8px;background:#121a3a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.phone .pct{font-family:var(--disp);font-size:2rem;font-weight:800}
+.phone .bar{width:70%;height:10px;border-radius:6px;background:rgba(255,255,255,.12);overflow:hidden}
+.phone .bar i{display:block;height:100%;width:0;background:var(--ok);transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.phone .bar i.mid{background:var(--cyan)}
+.phone .bar i.low{background:var(--warn)}
+.phone .plug{position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);width:24px;height:14px;background:var(--cyan);border-radius:0 0 6px 6px;opacity:0;transition:opacity .3s}
+.phone.charging .plug{opacity:1;animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(55,214,255,.5)}50%{box-shadow:0 0 12px 4px rgba(55,214,255,.35)}}
+
+.scan{font-size:.82rem;color:var(--mut)}
+.scan .row{display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid var(--line)}
+.scan .row:last-child{border-bottom:0}
+.scan b{color:var(--text);font-weight:600;text-align:right;word-break:break-word;max-width:58%}
+.scan .ok{color:var(--ok)}
+.scan .no{color:var(--warn)}
+
+.q{text-align:center;padding:8px 0 4px}
+.q p{font-size:1.05rem;font-weight:600;margin-bottom:14px}
+.btns{display:flex;flex-direction:column;gap:10px}
+.btn{border:0;border-radius:14px;padding:14px 16px;font-weight:700;font-size:.95rem;cursor:pointer;font-family:inherit}
+.btn.yes{background:linear-gradient(150deg,var(--blue),var(--blue2));color:#fff;box-shadow:0 8px 18px rgba(76,107,255,.35)}
+.btn.no{background:var(--card2);color:var(--text);border:1px solid var(--line)}
+.btn:active{transform:translateY(1px)}
+
+.reveal{display:none;text-align:center;animation:in .35s ease}
+.reveal.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+.reveal .big{font-size:2.4rem;margin:8px 0}
+.reveal h2{font-family:var(--disp);font-size:1.25rem;margin-bottom:8px}
+.reveal p{color:var(--mut);font-size:.92rem;margin-bottom:10px}
+.reveal .lesson{background:rgba(255,92,108,.12);border:1px solid rgba(255,92,108,.35);border-radius:14px;padding:12px 14px;color:var(--text);font-size:.9rem;margin:14px 0;text-align:left}
+.reveal .lesson b{color:var(--bad)}
+
+.footer{text-align:center;margin-top:24px;color:var(--mut);font-size:.8rem}
+.footer a{color:var(--cyan);font-weight:600;text-decoration:none}
+.row-links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}
+.row-links a{display:inline-flex;padding:8px 12px;border-radius:10px;background:var(--card);border:1px solid var(--line);color:var(--text);text-decoration:none;font-size:.8rem;font-weight:600}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/">
+      <div class="logo">AB</div>
+      <div><b>AB Oil and Gas</b><small>Etinan · real charging at the station</small></div>
+    </a>
+    <a class="nav" href="/">Station</a>
+  </header>
+
+  <h1>Charge your phone online</h1>
+  <p class="lead">We will scan your device, then offer wireless cloud charging. No cable needed.</p>
+
+  <div class="card" id="scanCard">
+    <h2>Device scan</h2>
+    <div class="phone" id="phone">
+      <div class="screen">
+        <div class="pct" id="pctLabel">—</div>
+        <div class="bar"><i id="pctBar"></i></div>
+        <small id="chgState" style="color:#9db0ff;font-size:.65rem">Reading…</small>
+      </div>
+      <div class="plug"></div>
+    </div>
+    <div class="scan" id="scanList"></div>
+  </div>
+
+  <div class="card q" id="askCard">
+    <p>Do you believe it?</p>
+    <div class="btns">
+      <button type="button" class="btn yes" id="btnYes">Yes, start charging</button>
+      <button type="button" class="btn no" id="btnNo">I will pass this time</button>
+    </div>
+  </div>
+
+  <div class="card reveal" id="revealYes">
+    <div class="big">😭 🤣</div>
+    <h2>If you believe this…</h2>
+    <p>…that means <b>anyone can scam you</b>.</p>
+    <div class="lesson">
+      <b>Nobody can charge your phone through a website.</b>
+      Battery level and browser info are readable on some devices — that is normal web APIs, not “cloud power”. Real charging happens at the station with a cable and a tag.
+    </div>
+    <p>Stay sharp online. If it sounds too convenient, it is usually a trap.</p>
+    <div class="row-links">
+      <a href="/">Real device charging (tags)</a>
+      <a href="https://wa.me/2348168906132?text=Hello%20AB%20Oil%20and%20Gas%20-%20need%20help">Contact if troubleshooting</a>
+    </div>
+  </div>
+
+  <div class="card reveal" id="revealNo">
+    <div class="big">👏</div>
+    <h2>Smart choice</h2>
+    <p>You did not fall for “charge online”. That is how you avoid scams.</p>
+    <div class="lesson" style="background:rgba(43,217,138,.1);border-color:rgba(43,217,138,.35)">
+      Sites can read battery % and browser details on some phones. They <b>cannot</b> send electricity to your device. For a real charge, drop your phone at <b>AB Oil and Gas, Etinan</b> and collect with your tag.
+    </div>
+    <div class="row-links">
+      <a href="/">Check your tag / charge at station</a>
+      <a href="https://wa.me/2348168906132?text=Hello%20AB">WhatsApp us</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Abasieyene Ini Investment Limited · Etinan</p>
+    <p style="margin-top:4px"><a href="/about">About</a> · <a href="/">Station app</a> · <a href="https://figsh.devtem.org">Figsh</a></p>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const list = $("scanList");
+  const rows = [];
+
+  function add(label, value, ok) {
+    rows.push({ label, value, ok });
+  }
+
+  // Browser
+  const ua = navigator.userAgent || "";
+  let browser = "Unknown";
+  if (/Edg\//.test(ua)) browser = "Microsoft Edge";
+  else if (/OPR\/|Opera/.test(ua)) browser = "Opera";
+  else if (/Chrome\//.test(ua) && !/Edg\//.test(ua)) browser = "Chrome";
+  else if (/Safari\//.test(ua) && !/Chrome\//.test(ua)) browser = "Safari";
+  else if (/Firefox\//.test(ua)) browser = "Firefox";
+  else if (/SamsungBrowser/.test(ua)) browser = "Samsung Internet";
+  add("Browser", browser, true);
+
+  // Platform / OS hint
+  let os = navigator.platform || "—";
+  if (/Android/i.test(ua)) os = "Android";
+  else if (/iPhone|iPad|iPod/i.test(ua)) os = "iOS";
+  else if (/Win/i.test(ua)) os = "Windows";
+  else if (/Mac/i.test(ua)) os = "macOS";
+  else if (/Linux/i.test(ua)) os = "Linux";
+  add("System", os, true);
+
+  // Language
+  add("Language", navigator.language || (navigator.languages && navigator.languages[0]) || "—", true);
+
+  // Online
+  add("Online", navigator.onLine ? "Yes" : "Offline", navigator.onLine);
+
+  // Cookies
+  add("Cookies", navigator.cookieEnabled ? "Enabled" : "Disabled", navigator.cookieEnabled);
+
+  // Hardware concurrency
+  if (navigator.hardwareConcurrency) {
+    add("CPU threads", String(navigator.hardwareConcurrency), true);
+  }
+
+  // Device memory (Chrome)
+  if (navigator.deviceMemory) {
+    add("Device memory", navigator.deviceMemory + " GB (approx)", true);
+  }
+
+  // Touch
+  const touch = navigator.maxTouchPoints > 0 || "ontouchstart" in window;
+  add("Touch screen", touch ? "Yes (" + (navigator.maxTouchPoints || "?") + " points)" : "No", true);
+
+  // Connection (Network Information API)
+  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  if (conn) {
+    const type = conn.effectiveType || conn.type || "—";
+    add("Network", type + (conn.downlink ? " · ~" + conn.downlink + " Mbps" : ""), true);
+  } else {
+    add("Network API", "Not available", false);
+  }
+
+  // Vendor
+  if (navigator.vendor) add("Vendor", navigator.vendor, true);
+
+  // PDF viewer / pdfViewerEnabled
+  if ("pdfViewerEnabled" in navigator) {
+    add("PDF viewer", navigator.pdfViewerEnabled ? "Yes" : "No", true);
+  }
+
+  // Webdriver (automation)
+  add("Automation flag", navigator.webdriver ? "Yes (bot-like)" : "No", !navigator.webdriver);
+
+  function renderScan() {
+    list.innerHTML = rows.map(r =>
+      `<div class="row"><span>${r.label}</span><b class="${r.ok === false ? "no" : "ok"}">${r.value}</b></div>`
+    ).join("");
+  }
+  renderScan();
+
+  // Battery
+  const pctLabel = $("pctLabel");
+  const pctBar = $("pctBar");
+  const chgState = $("chgState");
+  const phone = $("phone");
+
+  function setBattery(level, charging) {
+    const pct = Math.round(level * 100);
+    pctLabel.textContent = pct + "%";
+    pctBar.style.width = pct + "%";
+    pctBar.className = pct < 30 ? "low" : pct < 70 ? "mid" : "";
+    chgState.textContent = charging ? "Plugged in (device)" : "On battery";
+    if (charging) phone.classList.add("charging");
+    else phone.classList.remove("charging");
+
+    // update or insert battery row
+    const idx = rows.findIndex(r => r.label === "Battery");
+    const val = pct + "%" + (charging ? " · charging" : "");
+    if (idx >= 0) rows[idx] = { label: "Battery", value: val, ok: true };
+    else rows.unshift({ label: "Battery", value: val, ok: true });
+    renderScan();
+  }
+
+  if (navigator.getBattery) {
+    navigator.getBattery().then(bat => {
+      setBattery(bat.level, bat.charging);
+      bat.addEventListener("levelchange", () => setBattery(bat.level, bat.charging));
+      bat.addEventListener("chargingchange", () => setBattery(bat.level, bat.charging));
+    }).catch(() => {
+      pctLabel.textContent = "N/A";
+      chgState.textContent = "Battery API blocked";
+      rows.unshift({ label: "Battery", value: "Not available in this browser", ok: false });
+      renderScan();
+    });
+  } else {
+    pctLabel.textContent = "N/A";
+    chgState.textContent = "API not supported";
+    rows.unshift({ label: "Battery", value: "Not supported (e.g. many iOS browsers)", ok: false });
+    renderScan();
+  }
+
+  // Fake “charging” animation if they say yes — then reveal
+  let fakeTimer;
+  function fakeCharge() {
+    phone.classList.add("charging");
+    chgState.textContent = "Cloud charging…";
+    let n = 0;
+    fakeTimer = setInterval(() => {
+      n++;
+      chgState.textContent = "Cloud charging" + ".".repeat((n % 3) + 1);
+      if (n >= 5) {
+        clearInterval(fakeTimer);
+        showYes();
+      }
+    }, 400);
+  }
+
+  function hideAsk() {
+    $("askCard").style.display = "none";
+  }
+  function showYes() {
+    hideAsk();
+    $("revealYes").classList.add("on");
+    phone.classList.remove("charging");
+    chgState.textContent = "Still the same battery 😂";
+    $("revealYes").scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+  function showNo() {
+    hideAsk();
+    $("revealNo").classList.add("on");
+    $("revealNo").scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  $("btnYes").onclick = () => {
+    $("btnYes").disabled = true;
+    $("btnNo").disabled = true;
+    fakeCharge();
+  };
+  $("btnNo").onclick = () => {
+    $("btnYes").disabled = true;
+    $("btnNo").disabled = true;
+    showNo();
+  };
+})();
+</script>
+</body>
+</html>
