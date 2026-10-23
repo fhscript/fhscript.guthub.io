@@ -1,0 +1,39 @@
+name: Auto Generate Sitemap
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write   # THIS FIXES 
+
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate sitemap.xml
+        uses: cicirello/generate-sitemap@v1
+        with:
+          base-url-path: https://ab.devtem.org
+          include-html: true
+          drop-html-extension: true
+          exclude-paths: |
+            assets
+            scripts
+            node_modules
+
+      - name: Commit sitemap
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+
+          git add sitemap.xml
+          git diff --cached --quiet || git commit -m "Auto update sitemap"
+          git push
